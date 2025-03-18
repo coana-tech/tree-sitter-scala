@@ -25,12 +25,14 @@ const PREC = {
 module.exports = grammar({
   name: "scala",
 
-  extras: $ => [/\s/, $.comment, $.block_comment],
+  extras: $ => [/\s/, $.comment, $.block_comment, $._automatic_semicolon_abort],
 
   supertypes: $ => [$.expression, $._definition, $._pattern],
 
   externals: $ => [
+    $._scanner_start,
     $._automatic_semicolon,
+    $._automatic_semicolon_abort,
     $._indent,
     $._indent_abort,
     $._interpolated_string_middle,
@@ -61,6 +63,7 @@ module.exports = grammar({
     $._param_type,
     $._identifier,
     $.literal,
+    ,
   ],
   // Doc: https://tree-sitter.github.io/tree-sitter/creating-parsers, search "precedences"
   // These names can be used in the prec functions to define precedence relative only to other names in the array, rather than globally.
@@ -116,14 +119,13 @@ module.exports = grammar({
 
     [$._definition_body],
     [$._block],
-    [$.indented_block],
-    [$._indented_template_body],
     [$._type_identifier, $._lambda_start],
+
     [$._simple_type, $._lambda_start],
     [$._simple_type, $.binding],
     [$._simple_type, $._simple_expression],
     [$._simple_type, $.lambda_expression],
-    [$.binding, $._simple_expression, $._simple_type],
+    [$._simple_type, $._simple_expression, $.binding],
   ],
 
   word: $ => $._alpha_identifier,
@@ -133,6 +135,7 @@ module.exports = grammar({
     compilation_unit: $ =>
       seq(
         optional($._shebang),
+        $._scanner_start,
         optional(trailingSep1($._semicolon, $._top_level_definition)),
       ),
 
@@ -184,15 +187,7 @@ module.exports = grammar({
 
     enum_body: $ =>
       choice(
-        prec.left(
-          PREC.control,
-          seq(
-            ":",
-            $._indent,
-            $._enum_block,
-            choice($._outdent, $._indent_abort),
-          ),
-        ),
+        prec.left(PREC.control, seq(":", $._indent, $._enum_block, $._outdent)),
         seq(
           $._open_brace,
           // TODO: self type
@@ -436,18 +431,15 @@ module.exports = grammar({
       choice($._indented_template_body, $._braced_template_body),
 
     _indented_template_body: $ =>
-      prec.dynamic(
+      prec.left(
         PREC.control,
-        choice(
-          seq(
-            ":",
-            $._indent,
-            optional($.self_type),
-            $._block,
-            $._outdent,
-            optional($._end_marker),
-          ),
-          seq(":", $._indent, optional($.self_type), $._block, $._indent_abort),
+        seq(
+          ":",
+          $._indent,
+          optional($.self_type),
+          $._block,
+          $._outdent,
+          optional($._end_marker),
         ),
       ),
 
@@ -463,16 +455,13 @@ module.exports = grammar({
 
     _braced_template_body1: $ => seq(optional($.self_type), $._block),
     _braced_template_body2: $ =>
-      prec.dynamic(
-        PREC.control,
-        seq(
-          choice(
-            seq($._indent, optional($.self_type)),
-            seq(optional($.self_type), $._indent),
-          ),
-          optional($._block),
-          choice($._outdent, $._indent_abort),
+      seq(
+        choice(
+          seq($._indent, optional($.self_type)),
+          seq(optional($.self_type), $._indent),
         ),
+        optional($._block),
+        $._outdent,
       ),
 
     /*
@@ -482,17 +471,14 @@ module.exports = grammar({
       choice($._indented_with_template_body, $._braced_with_template_body),
 
     _indented_with_template_body: $ =>
-      prec.dynamic(
-        1,
-        choice(
-          seq(
-            $._indent,
-            optional($.self_type),
-            $._block,
-            $._outdent,
-            optional($._end_marker),
-          ),
-          seq($._indent, optional($.self_type), $._block, $._indent_abort),
+      prec.left(
+        PREC.control,
+        seq(
+          $._indent,
+          optional($.self_type),
+          $._block,
+          $._outdent,
+          optional($._end_marker),
         ),
       ),
 
@@ -508,13 +494,7 @@ module.exports = grammar({
 
     _extension_template_body: $ =>
       choice(
-        prec.dynamic(
-          1,
-          choice(
-            seq($._indent, $._block, $._outdent, optional($._end_marker)),
-            seq($._indent, $._block, $._indent_abort),
-          ),
-        ),
+        seq($._indent, $._block, $._outdent, optional($._end_marker)),
         seq($._open_brace, optional($._block), $._close_brace),
       ),
 
@@ -542,7 +522,7 @@ module.exports = grammar({
     // Dynamic precedences added here to win over $.call_expression
     self_type: $ =>
       prec.dynamic(
-        10,
+        1,
         seq($._identifier, optional($._self_type_ascription), "=>"),
       ),
 
@@ -915,33 +895,20 @@ module.exports = grammar({
     block: $ => seq($._open_brace, optional($._block), $._close_brace),
 
     indented_block: $ =>
-      prec.dynamic(
-        1,
-        choice(
-          seq($._indent, $._block, $._outdent, optional($._end_marker)),
-          seq($._indent, $._block, $._indent_abort),
+      prec.left(
+        PREC.control,
+        seq(
+          $._indent,
+          $._block,
+          choice(seq($._outdent, optional($._end_marker)), $._indent_abort),
         ),
       ),
 
     indented_cases: $ =>
-      prec.dynamic(
-        1,
-        seq(
-          $._indent,
-          repeat1($.case_clause),
-          choice($._outdent, $._indent_abort),
-        ),
-      ),
+      prec.left(seq($._indent, repeat1($.case_clause), $._outdent)),
 
     _indented_type_cases: $ =>
-      prec.dynamic(
-        1,
-        seq(
-          $._indent,
-          repeat1($.type_case_clause),
-          choice($._outdent, $._indent_abort),
-        ),
-      ),
+      prec.left(seq($._indent, repeat1($.type_case_clause), $._outdent)),
 
     // ---------------------------------------------------------------
     // Types
@@ -1422,7 +1389,7 @@ module.exports = grammar({
       ),
 
     colon_call_expression: $ =>
-      prec.dynamic(
+      prec.right(
         PREC.colon_call,
         seq(
           field("function", $._postfix_expression_choice),
@@ -1436,7 +1403,7 @@ module.exports = grammar({
      *.                         indent (CaseClauses | Block) outdent
      */
     colon_argument: $ =>
-      prec.dynamic(
+      prec.left(
         PREC.colon_call,
         seq(
           optional(field("lambda_start", $._lambda_start)),
@@ -1467,7 +1434,11 @@ module.exports = grammar({
      */
     instance_expression: $ =>
       choice(
-        seq("new", $._constructor_application, $.template_body),
+        // This is weakened so ascription wins for new Array: Array
+        prec.dynamic(
+          0,
+          seq("new", $._constructor_application, $.template_body),
+        ),
         prec("new", seq("new", $.template_body)),
         seq("new", $._constructor_application),
       ),
@@ -1917,11 +1888,7 @@ module.exports = grammar({
         trailingSep1($._semicolon, $.enumerator),
         prec.dynamic(
           1,
-          seq(
-            $._indent,
-            trailingSep1($._semicolon, $.enumerator),
-            choice($._outdent, $._indent_abort),
-          ),
+          seq($._indent, trailingSep1($._semicolon, $.enumerator), $._outdent),
         ),
       ),
 

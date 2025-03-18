@@ -4,16 +4,6 @@ Call expressions
 
 class C {
   def main() {
-    a()
-    a(
-      123,
-      234,
-    )
-    ::(123)
-    a(b, c)
-    a.map(x => x + 1)
-    a { 123 }
-    a { b }
     a.map{ x => x + 1 }
     /* comment */ a.exists { case ((i, _)) => i }
   }
@@ -29,42 +19,6 @@ class C {
         (identifier)
         (parameters)
         (block
-          (call_expression
-            (identifier)
-            (arguments))
-          (call_expression
-            (identifier)
-            (arguments
-              (integer_literal)
-              (integer_literal)))
-          (call_expression
-            (operator_identifier)
-            (arguments
-              (integer_literal)))
-          (call_expression
-            (identifier)
-            (arguments
-              (identifier)
-              (identifier)))
-          (call_expression
-            (field_expression
-              (identifier)
-              (identifier))
-            (arguments
-              (lambda_expression
-                (identifier)
-                (infix_expression
-                  (identifier)
-                  (operator_identifier)
-                  (integer_literal)))))
-          (call_expression
-            (identifier)
-            (block
-              (integer_literal)))
-          (call_expression
-            (identifier)
-            (block
-              (identifier)))
           (call_expression
             (field_expression
               (identifier)

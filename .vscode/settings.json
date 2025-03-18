@@ -1,5 +1,6 @@
 {
   "files.associations": {
-    "array.h": "c"
+    "array.h": "c",
+    "alloc.h": "c"
   }
 }

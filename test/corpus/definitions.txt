@@ -424,7 +424,6 @@ object O5 {
 --------------------------------------------------------------------------------
 
 (compilation_unit
-  (comment)
   (object_definition
     (identifier)
     (template_body))

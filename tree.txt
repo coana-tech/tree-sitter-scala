@@ -1,0 +1,1146 @@
+(compilation_unit [0, 0] - [143, 0]
+  (package_clause [0, 0] - [0, 19]
+    name: (package_identifier [0, 8] - [0, 19]
+      (identifier [0, 8] - [0, 19])))
+  (package_clause [1, 0] - [1, 14]
+    name: (package_identifier [1, 8] - [1, 14]
+      (identifier [1, 8] - [1, 14])))
+  (import_declaration [3, 0] - [3, 26]
+    path: (identifier [3, 7] - [3, 11])
+    path: (identifier [3, 12] - [3, 15])
+    path: (identifier [3, 16] - [3, 19])
+    path: (identifier [3, 20] - [3, 26]))
+  (import_declaration [4, 0] - [4, 14]
+    path: (identifier [4, 7] - [4, 12])
+    (namespace_wildcard [4, 13] - [4, 14]))
+  (import_declaration [6, 0] - [6, 28]
+    path: (identifier [6, 7] - [6, 11])
+    path: (identifier [6, 12] - [6, 15])
+    (namespace_selectors [6, 17] - [6, 28]
+      (namespace_wildcard [6, 18] - [6, 23])
+      (namespace_wildcard [6, 25] - [6, 26])))
+  (import_declaration [7, 0] - [7, 44]
+    path: (identifier [7, 7] - [7, 11])
+    path: (identifier [7, 12] - [7, 18])
+    (namespace_selectors [7, 20] - [7, 44]
+      (as_renamed_identifier [7, 21] - [7, 42]
+        name: (identifier [7, 21] - [7, 27])
+        alias: (identifier [7, 31] - [7, 42]))))
+  (import_declaration [8, 0] - [8, 35]
+    path: (identifier [8, 7] - [8, 11])
+    path: (identifier [8, 12] - [8, 18])
+    (namespace_selectors [8, 20] - [8, 35]
+      (identifier [8, 21] - [8, 28])
+      (identifier [8, 30] - [8, 33])))
+  (import_declaration [9, 0] - [9, 25]
+    path: (identifier [9, 7] - [9, 11])
+    path: (identifier [9, 12] - [9, 15])
+    path: (identifier [9, 16] - [9, 20])
+    path: (identifier [9, 21] - [9, 25]))
+  (class_definition [11, 0] - [143, 0]
+    (modifiers [11, 0] - [11, 5])
+    name: (identifier [11, 12] - [11, 18])
+    (class_parameters [11, 18] - [11, 93]
+      (class_parameter [11, 19] - [11, 27]
+        name: (identifier [11, 19] - [11, 22])
+        type: (type_identifier [11, 24] - [11, 27]))
+      (class_parameter [11, 29] - [11, 54]
+        name: (identifier [11, 29] - [11, 36])
+        type: (lazy_parameter_type [11, 38] - [11, 54]
+          type: (stable_type_identifier [11, 41] - [11, 54]
+            (identifier [11, 41] - [11, 47])
+            (type_identifier [11, 48] - [11, 54]))))
+      (class_parameter [11, 56] - [11, 76]
+        name: (identifier [11, 56] - [11, 64])
+        type: (lazy_parameter_type [11, 66] - [11, 76]
+          type: (type_identifier [11, 69] - [11, 76])))
+      (class_parameter [11, 78] - [11, 92]
+        name: (identifier [11, 78] - [11, 83])
+        type: (lazy_parameter_type [11, 85] - [11, 92]
+          type: (type_identifier [11, 88] - [11, 92]))))
+    extend: (extends_clause [12, 4] - [12, 31]
+      type: (type_identifier [12, 12] - [12, 26])
+      arguments: (arguments [12, 26] - [12, 31]
+        (identifier [12, 27] - [12, 30])))
+    body: (template_body [12, 31] - [143, 0]
+      (function_definition [14, 2] - [14, 59]
+        (modifiers [14, 2] - [14, 9]
+          (access_modifier [14, 2] - [14, 9]))
+        name: (identifier [14, 14] - [14, 21])
+        parameters: (parameters [14, 21] - [14, 36]
+          (type_identifier [14, 28] - [14, 35]))
+        body: (field_expression [14, 40] - [14, 59]
+          value: (identifier [14, 40] - [14, 51])
+          field: (identifier [14, 52] - [14, 59])))
+      (function_definition [15, 2] - [15, 56]
+        (modifiers [15, 2] - [15, 9]
+          (access_modifier [15, 2] - [15, 9]))
+        name: (identifier [15, 14] - [15, 22])
+        parameters: (parameters [15, 22] - [15, 37]
+          (type_identifier [15, 29] - [15, 36]))
+        body: (field_expression [15, 40] - [15, 56]
+          value: (identifier [15, 40] - [15, 51])
+          field: (identifier [15, 52] - [15, 56])))
+      (function_definition [17, 2] - [19, 3]
+        name: (identifier [17, 6] - [17, 10])
+        body: (call_expression [17, 13] - [19, 3]
+          function: (identifier [17, 13] - [17, 17])
+          arguments: (block [17, 19] - [19, 3]
+            (lambda_expression [17, 20] - [19, 2]
+              parameters: (wildcard [17, 20] - [17, 21])
+              (lambda_expression [17, 26] - [19, 2]
+                parameters: (identifier [17, 26] - [17, 28])
+                (indented_block [18, 4] - [19, 2]
+                  (infix_expression [18, 4] - [18, 33]
+                    left: (identifier [18, 4] - [18, 6])
+                    operator: (identifier [18, 7] - [18, 12])
+                    right: (call_expression [18, 13] - [18, 33]
+                      function: (identifier [18, 13] - [18, 31])
+                      arguments: (arguments [18, 31] - [18, 33])))))))))
+      (function_definition [21, 2] - [26, 3]
+        name: (identifier [21, 6] - [21, 13])
+        body: (call_expression [21, 16] - [26, 3]
+          function: (identifier [21, 16] - [21, 20])
+          arguments: (block [21, 22] - [26, 3]
+            (lambda_expression [21, 23] - [26, 2]
+              parameters: (identifier [21, 23] - [21, 26])
+              (lambda_expression [21, 31] - [26, 2]
+                parameters: (wildcard [21, 31] - [21, 32])
+                (indented_block [22, 4] - [26, 2]
+                  (if_expression [22, 4] - [25, 17]
+                    condition: (infix_expression [22, 7] - [22, 47]
+                      left: (field_expression [22, 7] - [22, 23]
+                        value: (identifier [22, 7] - [22, 10])
+                        field: (identifier [22, 11] - [22, 23]))
+                      operator: (operator_identifier [22, 24] - [22, 26])
+                      right: (call_expression [22, 27] - [22, 47]
+                        function: (identifier [22, 27] - [22, 36])
+                        arguments: (arguments [22, 36] - [22, 47]
+                          (field_expression [22, 37] - [22, 46]
+                            value: (wildcard [22, 37] - [22, 38])
+                            field: (identifier [22, 39] - [22, 46])))))
+                    consequence: (indented_block [23, 6] - [25, 4]
+                      (call_expression [23, 6] - [25, 4]
+                        function: (call_expression [23, 6] - [23, 54]
+                          function: (identifier [23, 6] - [23, 15])
+                          arguments: (arguments [23, 15] - [23, 54]
+                            (infix_expression [23, 16] - [23, 53]
+                              left: (identifier [23, 16] - [23, 24])
+                              operator: (identifier [23, 25] - [23, 36])
+                              right: (string [23, 37] - [23, 53]))))
+                        arguments: (colon_argument [23, 56] - [25, 4]
+                          lambda_start: (bindings [23, 56] - [23, 71]
+                            (binding [23, 57] - [23, 60]
+                              name: (identifier [23, 57] - [23, 60]))
+                            (binding [23, 62] - [23, 70]
+                              name: (identifier [23, 62] - [23, 70])))
+                          (indented_block [24, 8] - [25, 4]
+                            (call_expression [24, 8] - [24, 48]
+                              function: (field_expression [24, 8] - [24, 33]
+                                value: (field_expression [24, 8] - [24, 28]
+                                  value: (field_expression [24, 8] - [24, 23]
+                                    value: (field_expression [24, 8] - [24, 18]
+                                      value: (identifier [24, 8] - [24, 13])
+                                      field: (identifier [24, 14] - [24, 18]))
+                                    field: (identifier [24, 19] - [24, 23]))
+                                  field: (identifier [24, 24] - [24, 28]))
+                                field: (identifier [24, 29] - [24, 33]))
+                              arguments: (arguments [24, 33] - [24, 48]
+                                (identifier [24, 34] - [24, 37])
+                                (identifier [24, 39] - [24, 47])))))))
+                    alternative: (identifier [25, 9] - [25, 17]))))))))
+      (function_definition [28, 2] - [40, 3]
+        (modifiers [28, 2] - [28, 9]
+          (access_modifier [28, 2] - [28, 9]))
+        name: (identifier [28, 14] - [28, 32])
+        parameters: (parameters [28, 33] - [30, 3]
+          (parameter [29, 6] - [29, 38]
+            name: (identifier [29, 6] - [29, 9])
+            type: (generic_type [29, 11] - [29, 31]
+              type: (type_identifier [29, 11] - [29, 17])
+              type_arguments: (type_arguments [29, 17] - [29, 31]
+                (generic_type [29, 18] - [29, 30]
+                  type: (type_identifier [29, 18] - [29, 22])
+                  type_arguments: (type_arguments [29, 22] - [29, 30]
+                    (type_identifier [29, 23] - [29, 29])))))
+            default_value: (identifier [29, 34] - [29, 38])))
+        parameters: (parameters [30, 3] - [30, 18]
+          (type_identifier [30, 10] - [30, 17]))
+        parameters: (parameters [30, 18] - [30, 32]
+          (parameter [30, 25] - [30, 31]
+            name: (identifier [30, 25] - [30, 27])
+            type: (type_identifier [30, 29] - [30, 31])))
+        return_type: (generic_type [30, 34] - [30, 42]
+          type: (type_identifier [30, 34] - [30, 36])
+          type_arguments: (type_arguments [30, 36] - [30, 42]
+            (type_identifier [30, 37] - [30, 41])))
+        body: (infix_expression [30, 45] - [40, 3]
+          left: (call_expression [30, 45] - [30, 68]
+            function: (field_expression [30, 45] - [30, 64]
+              value: (field_expression [30, 45] - [30, 59]
+                value: (field_expression [30, 45] - [30, 55]
+                  value: (identifier [30, 45] - [30, 48])
+                  field: (identifier [30, 49] - [30, 55]))
+                field: (identifier [30, 56] - [30, 59]))
+              field: (identifier [30, 60] - [30, 64]))
+            arguments: (arguments [30, 64] - [30, 68]
+              (identifier [30, 65] - [30, 67])))
+          operator: (identifier [30, 69] - [30, 76])
+          right: (case_block [30, 78] - [40, 3]
+            (case_clause [31, 4] - [39, 4]
+              pattern: (identifier [31, 9] - [31, 13])
+              body: (indented_block [32, 6] - [39, 4]
+                (call_expression [32, 6] - [39, 4]
+                  function: (identifier [32, 6] - [32, 17])
+                  arguments: (colon_argument [33, 8] - [39, 4]
+                    (indented_block [33, 8] - [39, 4]
+                      (for_expression [33, 8] - [38, 59]
+                        enumerators: (enumerators [34, 10] - [38, 8]
+                          (enumerator [34, 10] - [34, 69]
+                            (identifier [34, 10] - [34, 17])
+                            (call_expression [34, 21] - [34, 69]
+                              function: (field_expression [34, 21] - [34, 56]
+                                value: (call_expression [34, 21] - [34, 51]
+                                  function: (field_expression [34, 21] - [34, 47]
+                                    value: (field_expression [34, 21] - [34, 36]
+                                      value: (field_expression [34, 21] - [34, 32]
+                                        value: (identifier [34, 21] - [34, 24])
+                                        field: (identifier [34, 25] - [34, 32]))
+                                      field: (identifier [34, 33] - [34, 36]))
+                                    field: (identifier [34, 37] - [34, 47]))
+                                  arguments: (arguments [34, 47] - [34, 51]
+                                    (identifier [34, 48] - [34, 50])))
+                                field: (identifier [34, 52] - [34, 56]))
+                              arguments: (arguments [34, 56] - [34, 69]
+                                (field_expression [34, 57] - [34, 68]
+                                  value: (wildcard [34, 57] - [34, 58])
+                                  field: (identifier [34, 59] - [34, 68])))))
+                          (enumerator [37, 10] - [37, 90]
+                            (identifier [37, 10] - [37, 24])
+                            (call_expression [37, 28] - [37, 90]
+                              function: (field_expression [37, 28] - [37, 71]
+                                value: (call_expression [37, 28] - [37, 66]
+                                  function: (field_expression [37, 28] - [37, 55]
+                                    value: (field_expression [37, 28] - [37, 41]
+                                      value: (field_expression [37, 28] - [37, 37]
+                                        value: (identifier [37, 28] - [37, 31])
+                                        field: (identifier [37, 32] - [37, 37]))
+                                      field: (identifier [37, 38] - [37, 41]))
+                                    field: (identifier [37, 42] - [37, 55]))
+                                  arguments: (arguments [37, 55] - [37, 66]
+                                    (field_expression [37, 56] - [37, 65]
+                                      value: (identifier [37, 56] - [37, 58])
+                                      field: (identifier [37, 59] - [37, 65]))))
+                                field: (identifier [37, 67] - [37, 71]))
+                              arguments: (arguments [37, 71] - [37, 90]
+                                (call_expression [37, 72] - [37, 89]
+                                  function: (field_expression [37, 72] - [37, 83]
+                                    value: (wildcard [37, 72] - [37, 73])
+                                    field: (identifier [37, 74] - [37, 83]))
+                                  arguments: (arguments [37, 83] - [37, 89]
+                                    (boolean_literal [37, 84] - [37, 88])))))))
+                        body: (call_expression [38, 14] - [38, 59]
+                          function: (field_expression [38, 14] - [38, 30]
+                            value: (field_expression [38, 14] - [38, 25]
+                              value: (identifier [38, 14] - [38, 18])
+                              field: (identifier [38, 19] - [38, 25]))
+                            field: (identifier [38, 26] - [38, 30]))
+                          arguments: (arguments [38, 30] - [38, 59]
+                            (identifier [38, 31] - [38, 33])
+                            (identifier [38, 35] - [38, 42])
+                            (identifier [38, 44] - [38, 58])))))))))
+            (case_clause [39, 4] - [40, 2]
+              pattern: (case_class_pattern [39, 9] - [39, 16]
+                type: (type_identifier [39, 9] - [39, 13])
+                pattern: (identifier [39, 14] - [39, 15]))
+              body: (call_expression [39, 20] - [39, 77]
+                function: (identifier [39, 20] - [39, 30])
+                arguments: (arguments [39, 30] - [39, 77]
+                  (call_expression [39, 31] - [39, 76]
+                    function: (field_expression [39, 31] - [39, 53]
+                      value: (field_expression [39, 31] - [39, 42]
+                        value: (identifier [39, 31] - [39, 35])
+                        field: (identifier [39, 36] - [39, 42]))
+                      field: (identifier [39, 43] - [39, 53]))
+                    arguments: (arguments [39, 53] - [39, 76]
+                      (identifier [39, 54] - [39, 55])
+                      (identifier [39, 57] - [39, 59])
+                      (infix_expression [39, 61] - [39, 75]
+                        left: (identifier [39, 61] - [39, 64])
+                        operator: (operator_identifier [39, 65] - [39, 66])
+                        right: (identifier [39, 67] - [39, 75]))))))))))
+      (function_definition [42, 2] - [49, 3]
+        name: (identifier [42, 6] - [42, 10])
+        body: (call_expression [42, 13] - [49, 3]
+          function: (identifier [42, 13] - [42, 21])
+          arguments: (block [42, 23] - [49, 3]
+            (lambda_expression [42, 24] - [49, 2]
+              parameters: (identifier [42, 24] - [42, 27])
+              (lambda_expression [42, 32] - [49, 2]
+                parameters: (identifier [42, 32] - [42, 34])
+                (indented_block [43, 4] - [49, 2]
+                  (call_expression [43, 4] - [48, 7]
+                    function: (field_expression [43, 4] - [45, 11]
+                      value: (call_expression [43, 4] - [44, 24]
+                        function: (field_expression [43, 4] - [44, 22]
+                          value: (identifier [43, 4] - [43, 12])
+                          field: (identifier [44, 7] - [44, 22]))
+                        arguments: (arguments [44, 22] - [44, 24]))
+                      field: (identifier [45, 7] - [45, 11]))
+                    arguments: (arguments [45, 12] - [48, 7]
+                      (lambda_expression [46, 8] - [46, 65]
+                        parameters: (identifier [46, 8] - [46, 11])
+                        (infix_expression [46, 15] - [46, 65]
+                          left: (call_expression [46, 15] - [46, 43]
+                            function: (identifier [46, 15] - [46, 33])
+                            arguments: (arguments [46, 33] - [46, 43]
+                              (field_expression [46, 34] - [46, 42]
+                                value: (identifier [46, 34] - [46, 37])
+                                field: (identifier [46, 38] - [46, 42]))))
+                          operator: (identifier [46, 44] - [46, 47])
+                          right: (block [46, 49] - [46, 65]
+                            (call_expression [46, 50] - [46, 63]
+                              function: (identifier [46, 50] - [46, 60])
+                              arguments: (arguments [46, 60] - [46, 63]
+                                (wildcard [46, 61] - [46, 62]))))))
+                      (lambda_expression [47, 8] - [47, 90]
+                        parameters: (identifier [47, 8] - [47, 12])
+                        (infix_expression [47, 16] - [47, 90]
+                          left: (call_expression [47, 16] - [47, 41]
+                            function: (field_expression [47, 16] - [47, 35]
+                              value: (field_expression [47, 16] - [47, 30]
+                                value: (field_expression [47, 16] - [47, 26]
+                                  value: (identifier [47, 16] - [47, 19])
+                                  field: (identifier [47, 20] - [47, 26]))
+                                field: (identifier [47, 27] - [47, 30]))
+                              field: (identifier [47, 31] - [47, 35]))
+                            arguments: (arguments [47, 35] - [47, 41]
+                              (identifier [47, 36] - [47, 40])))
+                          operator: (identifier [47, 42] - [47, 48])
+                          right: (field_expression [47, 49] - [47, 90]
+                            value: (call_expression [47, 49] - [47, 77]
+                              function: (identifier [47, 49] - [47, 57])
+                              arguments: (arguments [47, 57] - [47, 77]
+                                (field_expression [47, 58] - [47, 76]
+                                  value: (field_expression [47, 58] - [47, 71]
+                                    value: (identifier [47, 58] - [47, 64])
+                                    field: (identifier [47, 65] - [47, 71]))
+                                  field: (identifier [47, 72] - [47, 76]))))
+                            field: (identifier [47, 78] - [47, 90]))))))))))))
+      (function_definition [51, 2] - [63, 3]
+        name: (identifier [51, 6] - [51, 11])
+        parameters: (parameters [51, 11] - [51, 45]
+          (parameter [51, 12] - [51, 44]
+            name: (identifier [51, 12] - [51, 21])
+            type: (generic_type [51, 23] - [51, 37]
+              type: (type_identifier [51, 23] - [51, 29])
+              type_arguments: (type_arguments [51, 29] - [51, 37]
+                (type_identifier [51, 30] - [51, 36])))
+            default_value: (identifier [51, 40] - [51, 44])))
+        body: (call_expression [51, 48] - [63, 3]
+          function: (call_expression [51, 48] - [51, 65]
+            function: (identifier [51, 48] - [51, 54])
+            arguments: (arguments [51, 54] - [51, 65]
+              (field_expression [51, 55] - [51, 64]
+                value: (wildcard [51, 55] - [51, 56])
+                field: (identifier [51, 57] - [51, 64]))))
+          arguments: (block [51, 67] - [63, 3]
+            (lambda_expression [51, 68] - [63, 2]
+              parameters: (identifier [51, 68] - [51, 71])
+              (lambda_expression [51, 76] - [63, 2]
+                parameters: (identifier [51, 76] - [51, 78])
+                (indented_block [52, 4] - [63, 2]
+                  (val_definition [52, 4] - [52, 62]
+                    pattern: (identifier [52, 8] - [52, 14])
+                    value: (call_expression [52, 17] - [52, 62]
+                      function: (field_expression [52, 17] - [52, 51]
+                        value: (field_expression [52, 17] - [52, 41]
+                          value: (field_expression [52, 17] - [52, 31]
+                            value: (field_expression [52, 17] - [52, 27]
+                              value: (identifier [52, 17] - [52, 20])
+                              field: (identifier [52, 21] - [52, 27]))
+                            field: (identifier [52, 28] - [52, 31]))
+                          field: (identifier [52, 32] - [52, 41]))
+                        field: (identifier [52, 42] - [52, 51]))
+                      arguments: (arguments [52, 51] - [52, 62]
+                        (identifier [52, 52] - [52, 61]))))
+                  (for_expression [53, 4] - [62, 12]
+                    enumerators: (enumerators [54, 6] - [62, 4]
+                      (enumerator [54, 6] - [54, 72]
+                        (identifier [54, 6] - [54, 13])
+                        (call_expression [54, 42] - [54, 72]
+                          function: (field_expression [54, 42] - [54, 64]
+                            value: (field_expression [54, 42] - [54, 56]
+                              value: (field_expression [54, 42] - [54, 52]
+                                value: (identifier [54, 42] - [54, 45])
+                                field: (identifier [54, 46] - [54, 52]))
+                              field: (identifier [54, 53] - [54, 56]))
+                            field: (identifier [54, 57] - [54, 64]))
+                          arguments: (arguments [54, 64] - [54, 72]
+                            (identifier [54, 65] - [54, 71]))))
+                      (enumerator [55, 6] - [55, 79]
+                        (identifier [55, 6] - [55, 15])
+                        (field_expression [55, 42] - [55, 79]
+                          value: (field_expression [55, 42] - [55, 66]
+                            value: (field_expression [55, 42] - [55, 56]
+                              value: (field_expression [55, 42] - [55, 52]
+                                value: (identifier [55, 42] - [55, 45])
+                                field: (identifier [55, 46] - [55, 52]))
+                              field: (identifier [55, 53] - [55, 56]))
+                            field: (identifier [55, 57] - [55, 66]))
+                          field: (identifier [55, 67] - [55, 79])))
+                      (enumerator [56, 6] - [56, 59]
+                        (tuple_pattern [56, 6] - [56, 38]
+                          (tuple_pattern [56, 7] - [56, 26]
+                            (identifier [56, 8] - [56, 14])
+                            (identifier [56, 16] - [56, 25]))
+                          (identifier [56, 28] - [56, 37]))
+                        (field_expression [56, 42] - [56, 59]
+                          value: (identifier [56, 42] - [56, 49])
+                          field: (identifier [56, 50] - [56, 59])))
+                      (enumerator [57, 6] - [57, 64]
+                        (wildcard [57, 6] - [57, 7])
+                        (infix_expression [57, 10] - [57, 64]
+                          left: (field_expression [57, 10] - [57, 31]
+                            value: (field_expression [57, 10] - [57, 18]
+                              value: (identifier [57, 10] - [57, 13])
+                              field: (identifier [57, 14] - [57, 18]))
+                            field: (identifier [57, 19] - [57, 31]))
+                          operator: (identifier [57, 32] - [57, 44])
+                          right: (call_expression [57, 45] - [57, 64]
+                            function: (field_expression [57, 45] - [57, 56]
+                              value: (identifier [57, 45] - [57, 52])
+                              field: (identifier [57, 53] - [57, 56]))
+                            arguments: (arguments [57, 56] - [57, 64]
+                              (field_expression [57, 57] - [57, 63]
+                                value: (wildcard [57, 57] - [57, 58])
+                                field: (identifier [57, 59] - [57, 63]))))))
+                      (enumerator [58, 6] - [58, 72]
+                        (identifier [58, 6] - [58, 17])
+                        (call_expression [58, 21] - [58, 72]
+                          function: (field_expression [58, 21] - [58, 48]
+                            value: (field_expression [58, 21] - [58, 35]
+                              value: (field_expression [58, 21] - [58, 28]
+                                value: (identifier [58, 21] - [58, 24])
+                                field: (identifier [58, 25] - [58, 28]))
+                              field: (identifier [58, 29] - [58, 35]))
+                            field: (identifier [58, 36] - [58, 48]))
+                          arguments: (arguments [58, 48] - [58, 72]
+                            (call_expression [58, 49] - [58, 71]
+                              function: (field_expression [58, 49] - [58, 60]
+                                value: (identifier [58, 49] - [58, 56])
+                                field: (identifier [58, 57] - [58, 60]))
+                              arguments: (arguments [58, 60] - [58, 71]
+                                (field_expression [58, 61] - [58, 70]
+                                  value: (field_expression [58, 61] - [58, 67]
+                                    value: (wildcard [58, 61] - [58, 62])
+                                    field: (identifier [58, 63] - [58, 67]))
+                                  field: (identifier [58, 68] - [58, 70])))))))
+                      (enumerator [59, 6] - [61, 7]
+                        (identifier [59, 6] - [59, 10])
+                        (call_expression [59, 14] - [61, 7]
+                          function: (identifier [59, 14] - [59, 24])
+                          arguments: (arguments [59, 25] - [61, 7]
+                            (call_expression [60, 8] - [60, 96]
+                              function: (field_expression [60, 8] - [60, 25]
+                                value: (field_expression [60, 8] - [60, 19]
+                                  value: (identifier [60, 8] - [60, 12])
+                                  field: (identifier [60, 13] - [60, 19]))
+                                field: (identifier [60, 20] - [60, 25]))
+                              arguments: (arguments [60, 25] - [60, 96]
+                                (identifier [60, 26] - [60, 33])
+                                (identifier [60, 35] - [60, 44])
+                                (identifier [60, 46] - [60, 52])
+                                (identifier [60, 54] - [60, 65])
+                                (identifier [60, 67] - [60, 73])
+                                (identifier [60, 75] - [60, 84])
+                                (identifier [60, 86] - [60, 95])))))))
+                    body: (identifier [62, 10] - [62, 12]))
+                  (parenthesized_expression [62, 12] - [62, 18]
+                    (identifier [62, 13] - [62, 17]))))))))
+      (function_definition [65, 2] - [69, 3]
+        name: (identifier [65, 6] - [65, 10])
+        parameters: (parameters [65, 10] - [65, 29]
+          (parameter [65, 11] - [65, 28]
+            name: (identifier [65, 11] - [65, 19])
+            type: (type_identifier [65, 21] - [65, 28])))
+        body: (call_expression [65, 32] - [69, 3]
+          function: (call_expression [65, 32] - [65, 49]
+            function: (identifier [65, 32] - [65, 38])
+            arguments: (arguments [65, 38] - [65, 49]
+              (field_expression [65, 39] - [65, 48]
+                value: (wildcard [65, 39] - [65, 40])
+                field: (identifier [65, 41] - [65, 48]))))
+          arguments: (block [65, 51] - [69, 3]
+            (lambda_expression [65, 52] - [69, 2]
+              parameters: (identifier [65, 52] - [65, 55])
+              (lambda_expression [65, 60] - [69, 2]
+                parameters: (identifier [65, 60] - [65, 62])
+                (indented_block [66, 4] - [69, 2]
+                  (call_expression [66, 4] - [69, 2]
+                    function: (call_expression [66, 4] - [66, 19]
+                      function: (identifier [66, 4] - [66, 9])
+                      arguments: (arguments [66, 9] - [66, 19]
+                        (identifier [66, 10] - [66, 18])))
+                    arguments: (colon_argument [66, 21] - [69, 2]
+                      lambda_start: (bindings [66, 21] - [66, 38]
+                        (binding [66, 22] - [66, 28]
+                          name: (identifier [66, 22] - [66, 28]))
+                        (binding [66, 30] - [66, 37]
+                          name: (identifier [66, 30] - [66, 37])))
+                      (indented_block [67, 6] - [69, 2]
+                        (call_expression [67, 6] - [69, 2]
+                          function: (field_expression [67, 6] - [67, 33]
+                            value: (call_expression [67, 6] - [67, 25]
+                              function: (identifier [67, 6] - [67, 16])
+                              arguments: (arguments [67, 16] - [67, 25]
+                                (identifier [67, 17] - [67, 24])))
+                            field: (identifier [67, 26] - [67, 33]))
+                          arguments: (colon_argument [67, 35] - [69, 2]
+                            lambda_start: (identifier [67, 35] - [67, 42])
+                            (indented_block [68, 8] - [69, 2]
+                              (call_expression [68, 8] - [68, 70]
+                                function: (field_expression [68, 8] - [68, 15]
+                                  value: (identifier [68, 8] - [68, 10])
+                                  field: (identifier [68, 11] - [68, 15]))
+                                arguments: (arguments [68, 15] - [68, 70]
+                                  (call_expression [68, 16] - [68, 69]
+                                    function: (field_expression [68, 16] - [68, 43]
+                                      value: (field_expression [68, 16] - [68, 38]
+                                        value: (field_expression [68, 16] - [68, 27]
+                                          value: (identifier [68, 16] - [68, 20])
+                                          field: (identifier [68, 21] - [68, 27]))
+                                        field: (identifier [68, 28] - [68, 38]))
+                                      field: (identifier [68, 39] - [68, 43]))
+                                    arguments: (arguments [68, 43] - [68, 69]
+                                      (identifier [68, 44] - [68, 50])
+                                      (identifier [68, 52] - [68, 59])
+                                      (identifier [68, 61] - [68, 68])))))))))))))))))
+      (function_definition [71, 2] - [92, 3]
+        name: (identifier [71, 6] - [71, 11])
+        parameters: (parameters [71, 11] - [71, 30]
+          (parameter [71, 12] - [71, 29]
+            name: (identifier [71, 12] - [71, 20])
+            type: (type_identifier [71, 22] - [71, 29])))
+        body: (call_expression [71, 33] - [92, 3]
+          function: (call_expression [71, 33] - [71, 54]
+            function: (identifier [71, 33] - [71, 43])
+            arguments: (arguments [71, 43] - [71, 54]
+              (field_expression [71, 44] - [71, 53]
+                value: (wildcard [71, 44] - [71, 45])
+                field: (identifier [71, 46] - [71, 53]))))
+          arguments: (block [71, 56] - [92, 3]
+            (lambda_expression [71, 57] - [92, 2]
+              parameters: (identifier [71, 57] - [71, 60])
+              (lambda_expression [71, 65] - [92, 2]
+                parameters: (identifier [71, 65] - [71, 67])
+                (indented_block [72, 4] - [92, 2]
+                  (call_expression [72, 4] - [92, 2]
+                    function: (call_expression [72, 4] - [72, 19]
+                      function: (identifier [72, 4] - [72, 9])
+                      arguments: (arguments [72, 9] - [72, 19]
+                        (identifier [72, 10] - [72, 18])))
+                    arguments: (colon_argument [72, 21] - [92, 2]
+                      lambda_start: (bindings [72, 21] - [72, 38]
+                        (binding [72, 22] - [72, 28]
+                          name: (identifier [72, 22] - [72, 28]))
+                        (binding [72, 30] - [72, 37]
+                          name: (identifier [72, 30] - [72, 37])))
+                      (indented_block [73, 6] - [92, 2]
+                        (call_expression [73, 6] - [91, 9]
+                          function: (field_expression [73, 6] - [75, 13]
+                            value: (call_expression [73, 6] - [74, 26]
+                              function: (field_expression [73, 6] - [74, 24]
+                                value: (identifier [73, 6] - [73, 13])
+                                field: (identifier [74, 9] - [74, 24]))
+                              arguments: (arguments [74, 24] - [74, 26]))
+                            field: (identifier [75, 9] - [75, 13]))
+                          arguments: (arguments [75, 14] - [91, 9]
+                            (lambda_expression [76, 10] - [78, 80]
+                              parameters: (identifier [76, 10] - [76, 13])
+                              (indented_block [77, 12] - [78, 80]
+                                (call_expression [77, 12] - [78, 80]
+                                  function: (field_expression [77, 12] - [77, 39]
+                                    value: (call_expression [77, 12] - [77, 31]
+                                      function: (identifier [77, 12] - [77, 22])
+                                      arguments: (arguments [77, 22] - [77, 31]
+                                        (identifier [77, 23] - [77, 30])))
+                                    field: (identifier [77, 32] - [77, 39]))
+                                  arguments: (colon_argument [77, 41] - [78, 80]
+                                    lambda_start: (identifier [77, 41] - [77, 48])
+                                    (indented_block [78, 14] - [78, 80]
+                                      (call_expression [78, 14] - [78, 80]
+                                        function: (field_expression [78, 14] - [78, 29]
+                                          value: (identifier [78, 14] - [78, 24])
+                                          field: (identifier [78, 25] - [78, 29]))
+                                        arguments: (arguments [78, 29] - [78, 80]
+                                          (call_expression [78, 30] - [78, 79]
+                                            function: (field_expression [78, 30] - [78, 57]
+                                              value: (field_expression [78, 30] - [78, 52]
+                                                value: (field_expression [78, 30] - [78, 41]
+                                                  value: (identifier [78, 30] - [78, 34])
+                                                  field: (identifier [78, 35] - [78, 41]))
+                                                field: (identifier [78, 42] - [78, 52]))
+                                              field: (identifier [78, 53] - [78, 57]))
+                                            arguments: (arguments [78, 57] - [78, 79]
+                                              (identifier [78, 58] - [78, 64])
+                                              (identifier [78, 66] - [78, 69])
+                                              (identifier [78, 71] - [78, 78]))))))))))
+                            (lambda_expression [79, 10] - [91, 8]
+                              parameters: (bindings [79, 10] - [79, 25]
+                                (binding [79, 11] - [79, 15]
+                                  name: (identifier [79, 11] - [79, 15]))
+                                (binding [79, 17] - [79, 24]
+                                  name: (identifier [79, 17] - [79, 24])))
+                              (indented_block [80, 12] - [91, 8]
+                                (for_expression [80, 12] - [90, 24]
+                                  enumerators: (enumerators [81, 14] - [90, 12]
+                                    (enumerator [81, 14] - [81, 72]
+                                      (wildcard [81, 14] - [81, 15])
+                                      (call_expression [81, 19] - [81, 72]
+                                        function: (field_expression [81, 19] - [81, 58]
+                                          value: (field_expression [81, 19] - [81, 44]
+                                            value: (field_expression [81, 19] - [81, 29]
+                                              value: (identifier [81, 19] - [81, 22])
+                                              field: (identifier [81, 23] - [81, 29]))
+                                            field: (identifier [81, 30] - [81, 44]))
+                                          field: (identifier [81, 45] - [81, 58]))
+                                        arguments: (arguments [81, 58] - [81, 72]
+                                          (field_expression [81, 59] - [81, 71]
+                                            value: (identifier [81, 59] - [81, 66])
+                                            field: (identifier [81, 67] - [81, 71])))))
+                                    (enumerator [82, 14] - [82, 48]
+                                      (identifier [82, 14] - [82, 20])
+                                      (call_expression [82, 23] - [82, 48]
+                                        function: (field_expression [82, 23] - [82, 42]
+                                          value: (identifier [82, 23] - [82, 33])
+                                          field: (identifier [82, 34] - [82, 42]))
+                                        arguments: (arguments [82, 42] - [82, 48]
+                                          (identifier [82, 43] - [82, 47]))))
+                                    (enumerator [83, 14] - [83, 73]
+                                      (wildcard [83, 14] - [83, 15])
+                                      (call_expression [83, 19] - [83, 73]
+                                        function: (field_expression [83, 19] - [83, 39]
+                                          value: (field_expression [83, 19] - [83, 33]
+                                            value: (field_expression [83, 19] - [83, 29]
+                                              value: (identifier [83, 19] - [83, 22])
+                                              field: (identifier [83, 23] - [83, 29]))
+                                            field: (identifier [83, 30] - [83, 33]))
+                                          field: (identifier [83, 34] - [83, 39]))
+                                        arguments: (arguments [83, 39] - [83, 73]
+                                          (identifier [83, 40] - [83, 44])
+                                          (identifier [83, 46] - [83, 52])
+                                          (call_expression [83, 54] - [83, 72]
+                                            function: (field_expression [83, 54] - [83, 64]
+                                              value: (identifier [83, 54] - [83, 60])
+                                              field: (identifier [83, 61] - [83, 64]))
+                                            arguments: (arguments [83, 64] - [83, 72]
+                                              (field_expression [83, 65] - [83, 71]
+                                                value: (wildcard [83, 65] - [83, 66])
+                                                field: (identifier [83, 67] - [83, 71])))))))
+                                    (enumerator [84, 14] - [84, 61]
+                                      (wildcard [84, 14] - [84, 15])
+                                      (call_expression [84, 19] - [84, 61]
+                                        function: (field_expression [84, 19] - [84, 44]
+                                          value: (field_expression [84, 19] - [84, 33]
+                                            value: (field_expression [84, 19] - [84, 26]
+                                              value: (identifier [84, 19] - [84, 22])
+                                              field: (identifier [84, 23] - [84, 26]))
+                                            field: (identifier [84, 27] - [84, 33]))
+                                          field: (identifier [84, 34] - [84, 44]))
+                                        arguments: (arguments [84, 44] - [84, 61]
+                                          (field_expression [84, 45] - [84, 60]
+                                            value: (field_expression [84, 45] - [84, 57]
+                                              value: (identifier [84, 45] - [84, 52])
+                                              field: (identifier [84, 53] - [84, 57]))
+                                            field: (identifier [84, 58] - [84, 60])))))
+                                    (enumerator [85, 14] - [89, 96]
+                                      (identifier [85, 14] - [85, 20])
+                                      (if_expression [86, 16] - [89, 96]
+                                        condition: (identifier [86, 19] - [86, 26])
+                                        consequence: (indented_block [87, 18] - [89, 16]
+                                          (postfix_expression [87, 18] - [87, 78]
+                                            (call_expression [87, 18] - [87, 71]
+                                              function: (field_expression [87, 18] - [87, 49]
+                                                value: (field_expression [87, 18] - [87, 42]
+                                                  value: (field_expression [87, 18] - [87, 32]
+                                                    value: (field_expression [87, 18] - [87, 28]
+                                                      value: (identifier [87, 18] - [87, 21])
+                                                      field: (identifier [87, 22] - [87, 28]))
+                                                    field: (identifier [87, 29] - [87, 32]))
+                                                  field: (identifier [87, 33] - [87, 42]))
+                                                field: (identifier [87, 43] - [87, 49]))
+                                              arguments: (arguments [87, 49] - [87, 71]
+                                                (call_expression [87, 50] - [87, 70]
+                                                  function: (identifier [87, 50] - [87, 55])
+                                                  arguments: (arguments [87, 55] - [87, 70]
+                                                    (field_expression [87, 56] - [87, 69]
+                                                      value: (identifier [87, 56] - [87, 62])
+                                                      field: (identifier [87, 63] - [87, 69]))))))
+                                            (identifier [87, 72] - [87, 78]))
+                                          (call_expression [88, 20] - [88, 51]
+                                            function: (identifier [88, 20] - [88, 28])
+                                            arguments: (arguments [88, 28] - [88, 51]
+                                              (call_expression [88, 29] - [88, 50]
+                                                function: (field_expression [88, 29] - [88, 48]
+                                                  value: (field_expression [88, 29] - [88, 42]
+                                                    value: (identifier [88, 29] - [88, 35])
+                                                    field: (identifier [88, 36] - [88, 42]))
+                                                  field: (identifier [88, 43] - [88, 48]))
+                                                arguments: (arguments [88, 48] - [88, 50])))))
+                                        alternative: (field_expression [89, 21] - [89, 96]
+                                          value: (call_expression [89, 21] - [89, 86]
+                                            function: (identifier [89, 21] - [89, 29])
+                                            arguments: (arguments [89, 29] - [89, 86]
+                                              (interpolated_string_expression [89, 30] - [89, 85]
+                                                interpolator: (identifier [89, 30] - [89, 31])
+                                                (interpolated_string [89, 31] - [89, 85]
+                                                  (interpolation [89, 32] - [89, 69]
+                                                    (block [89, 33] - [89, 69]
+                                                      (call_expression [89, 34] - [89, 68]
+                                                        function: (field_expression [89, 34] - [89, 52]
+                                                          value: (field_expression [89, 34] - [89, 47]
+                                                            value: (identifier [89, 34] - [89, 40])
+                                                            field: (identifier [89, 41] - [89, 47]))
+                                                          field: (identifier [89, 48] - [89, 52]))
+                                                        arguments: (arguments [89, 52] - [89, 68]
+                                                          (field_expression [89, 53] - [89, 67]
+                                                            value: (identifier [89, 53] - [89, 61])
+                                                            field: (identifier [89, 62] - [89, 67]))))))))))
+                                          field: (identifier [89, 87] - [89, 96])))))
+                                  body: (identifier [90, 18] - [90, 24])))))))))))))))
+      (function_definition [94, 2] - [112, 2]
+        (modifiers [94, 2] - [94, 9]
+          (access_modifier [94, 2] - [94, 9]))
+        name: (identifier [94, 14] - [94, 24])
+        parameters: (parameters [94, 24] - [94, 42]
+          (parameter [94, 25] - [94, 41]
+            name: (identifier [94, 25] - [94, 32])
+            type: (type_identifier [94, 34] - [94, 41])))
+        parameters: (parameters [94, 42] - [94, 57]
+          (type_identifier [94, 49] - [94, 56]))
+        parameters: (parameters [94, 57] - [94, 71]
+          (parameter [94, 64] - [94, 70]
+            name: (identifier [94, 64] - [94, 66])
+            type: (type_identifier [94, 68] - [94, 70])))
+        body: (indented_block [95, 4] - [112, 2]
+          (for_expression [95, 4] - [110, 5]
+            enumerators: (enumerators [96, 6] - [101, 4]
+              (enumerator [96, 6] - [96, 62]
+                (identifier [96, 6] - [96, 11])
+                (call_expression [96, 20] - [96, 62]
+                  function: (field_expression [96, 20] - [96, 43]
+                    value: (field_expression [96, 20] - [96, 32]
+                      value: (identifier [96, 20] - [96, 23])
+                      field: (identifier [96, 24] - [96, 32]))
+                    field: (identifier [96, 33] - [96, 43]))
+                  arguments: (arguments [96, 43] - [96, 62]
+                    (field_expression [96, 44] - [96, 56]
+                      value: (identifier [96, 44] - [96, 51])
+                      field: (identifier [96, 52] - [96, 56]))
+                    (integer_literal [96, 58] - [96, 61]))))
+              (enumerator [97, 6] - [97, 67]
+                (identifier [97, 6] - [97, 12])
+                (call_expression [97, 20] - [97, 67]
+                  function: (field_expression [97, 20] - [97, 41]
+                    value: (identifier [97, 20] - [97, 25])
+                    field: (identifier [97, 26] - [97, 41]))
+                  arguments: (arguments [97, 41] - [97, 67]
+                    (field_expression [97, 42] - [97, 54]
+                      value: (identifier [97, 42] - [97, 49])
+                      field: (identifier [97, 50] - [97, 54]))
+                    (identifier [97, 56] - [97, 61])
+                    (integer_literal [97, 63] - [97, 66]))))
+              (enumerator [98, 6] - [98, 95]
+                (identifier [98, 6] - [98, 13])
+                (call_expression [98, 20] - [98, 95]
+                  function: (field_expression [98, 20] - [98, 44]
+                    value: (field_expression [98, 20] - [98, 34]
+                      value: (field_expression [98, 20] - [98, 30]
+                        value: (identifier [98, 20] - [98, 23])
+                        field: (identifier [98, 24] - [98, 30]))
+                      field: (identifier [98, 31] - [98, 34]))
+                    field: (identifier [98, 35] - [98, 44]))
+                  arguments: (arguments [98, 44] - [98, 95]
+                    (infix_expression [98, 45] - [98, 94]
+                      left: (field_expression [98, 45] - [98, 60]
+                        value: (field_expression [98, 45] - [98, 57]
+                          value: (identifier [98, 45] - [98, 52])
+                          field: (identifier [98, 53] - [98, 57]))
+                        field: (identifier [98, 58] - [98, 60]))
+                      operator: (operator_identifier [98, 61] - [98, 63])
+                      right: (field_expression [98, 64] - [98, 94]
+                        value: (field_expression [98, 64] - [98, 81]
+                          value: (identifier [98, 64] - [98, 70])
+                          field: (identifier [98, 71] - [98, 81]))
+                        field: (identifier [98, 82] - [98, 94]))))))
+              (enumerator [99, 6] - [99, 73]
+                (identifier [99, 6] - [99, 13])
+                (call_expression [99, 20] - [99, 73]
+                  function: (field_expression [99, 20] - [99, 56]
+                    value: (field_expression [99, 20] - [99, 44]
+                      value: (field_expression [99, 20] - [99, 34]
+                        value: (field_expression [99, 20] - [99, 30]
+                          value: (identifier [99, 20] - [99, 23])
+                          field: (identifier [99, 24] - [99, 30]))
+                        field: (identifier [99, 31] - [99, 34]))
+                      field: (identifier [99, 35] - [99, 44]))
+                    field: (identifier [99, 45] - [99, 56]))
+                  arguments: (arguments [99, 56] - [99, 73]
+                    (field_expression [99, 57] - [99, 72]
+                      value: (field_expression [99, 57] - [99, 69]
+                        value: (identifier [99, 57] - [99, 64])
+                        field: (identifier [99, 65] - [99, 69]))
+                      field: (identifier [99, 70] - [99, 72])))))
+              (enumerator [100, 6] - [100, 63]
+                (identifier [100, 6] - [100, 16])
+                (call_expression [100, 20] - [100, 63]
+                  function: (field_expression [100, 20] - [100, 46]
+                    value: (field_expression [100, 20] - [100, 34]
+                      value: (field_expression [100, 20] - [100, 27]
+                        value: (identifier [100, 20] - [100, 23])
+                        field: (identifier [100, 24] - [100, 27]))
+                      field: (identifier [100, 28] - [100, 34]))
+                    field: (identifier [100, 35] - [100, 46]))
+                  arguments: (arguments [100, 46] - [100, 63]
+                    (field_expression [100, 47] - [100, 62]
+                      value: (field_expression [100, 47] - [100, 59]
+                        value: (identifier [100, 47] - [100, 54])
+                        field: (identifier [100, 55] - [100, 59]))
+                      field: (identifier [100, 60] - [100, 62]))))))
+            body: (call_expression [101, 10] - [110, 5]
+              function: (field_expression [101, 10] - [101, 40]
+                value: (field_expression [101, 10] - [101, 32]
+                  value: (field_expression [101, 10] - [101, 21]
+                    value: (identifier [101, 10] - [101, 14])
+                    field: (identifier [101, 15] - [101, 21]))
+                  field: (identifier [101, 22] - [101, 32]))
+                field: (identifier [101, 33] - [101, 40]))
+              arguments: (arguments [101, 41] - [110, 5]
+                (assignment_expression [102, 6] - [102, 14]
+                  left: (identifier [102, 6] - [102, 9])
+                  right: (identifier [102, 12] - [102, 14]))
+                (assignment_expression [103, 6] - [103, 23]
+                  left: (identifier [103, 6] - [103, 13])
+                  right: (identifier [103, 16] - [103, 23]))
+                (assignment_expression [104, 6] - [104, 26]
+                  left: (identifier [104, 6] - [104, 13])
+                  right: (identifier [104, 16] - [104, 26]))
+                (assignment_expression [105, 6] - [105, 21]
+                  left: (identifier [105, 6] - [105, 12])
+                  right: (identifier [105, 15] - [105, 21]))
+                (assignment_expression [106, 6] - [106, 23]
+                  left: (identifier [106, 6] - [106, 13])
+                  right: (identifier [106, 16] - [106, 23]))
+                (assignment_expression [107, 6] - [107, 39]
+                  left: (identifier [107, 6] - [107, 14])
+                  right: (field_expression [107, 17] - [107, 39]
+                    value: (field_expression [107, 17] - [107, 33]
+                      value: (field_expression [107, 17] - [107, 24]
+                        value: (identifier [107, 17] - [107, 20])
+                        field: (identifier [107, 21] - [107, 24]))
+                      field: (identifier [107, 25] - [107, 33]))
+                    field: (identifier [107, 34] - [107, 39])))
+                (assignment_expression [108, 6] - [108, 43]
+                  left: (identifier [108, 6] - [108, 13])
+                  right: (call_expression [108, 16] - [108, 43]
+                    function: (field_expression [108, 16] - [108, 30]
+                      value: (identifier [108, 16] - [108, 23])
+                      field: (identifier [108, 24] - [108, 30]))
+                    arguments: (arguments [108, 30] - [108, 43]
+                      (infix_expression [108, 31] - [108, 42]
+                        left: (field_expression [108, 31] - [108, 36]
+                          value: (wildcard [108, 31] - [108, 32])
+                          field: (identifier [108, 33] - [108, 36]))
+                        operator: (identifier [108, 37] - [108, 39])
+                        right: (identifier [108, 40] - [108, 42])))))
+                (assignment_expression [109, 6] - [109, 29]
+                  left: (identifier [109, 6] - [109, 16])
+                  right: (identifier [109, 19] - [109, 29])))))))
+      (function_definition [112, 2] - [117, 3]
+        name: (identifier [112, 6] - [112, 10])
+        parameters: (parameters [112, 10] - [112, 29]
+          (parameter [112, 11] - [112, 28]
+            name: (identifier [112, 11] - [112, 19])
+            type: (type_identifier [112, 21] - [112, 28])))
+        body: (call_expression [112, 32] - [117, 3]
+          function: (call_expression [112, 32] - [112, 49]
+            function: (identifier [112, 32] - [112, 38])
+            arguments: (arguments [112, 38] - [112, 49]
+              (field_expression [112, 39] - [112, 48]
+                value: (wildcard [112, 39] - [112, 40])
+                field: (identifier [112, 41] - [112, 48]))))
+          arguments: (block [112, 51] - [117, 3]
+            (lambda_expression [112, 52] - [117, 2]
+              parameters: (wildcard [112, 52] - [112, 53])
+              (lambda_expression [112, 58] - [117, 2]
+                parameters: (wildcard [112, 58] - [112, 59])
+                (indented_block [113, 4] - [117, 2]
+                  (call_expression [113, 4] - [117, 2]
+                    function: (call_expression [113, 4] - [113, 19]
+                      function: (identifier [113, 4] - [113, 9])
+                      arguments: (arguments [113, 9] - [113, 19]
+                        (identifier [113, 10] - [113, 18])))
+                    arguments: (colon_argument [113, 21] - [117, 2]
+                      lambda_start: (bindings [113, 21] - [113, 32]
+                        (binding [113, 22] - [113, 28]
+                          name: (identifier [113, 22] - [113, 28]))
+                        (binding [113, 30] - [113, 31]
+                          (wildcard [113, 30] - [113, 31])))
+                      (indented_block [114, 6] - [117, 2]
+                        (postfix_expression [114, 6] - [114, 42]
+                          (call_expression [114, 6] - [114, 39]
+                            function: (field_expression [114, 6] - [114, 31]
+                              value: (field_expression [114, 6] - [114, 20]
+                                value: (field_expression [114, 6] - [114, 16]
+                                  value: (identifier [114, 6] - [114, 9])
+                                  field: (identifier [114, 10] - [114, 16]))
+                                field: (identifier [114, 17] - [114, 20]))
+                              field: (identifier [114, 21] - [114, 31]))
+                            arguments: (arguments [114, 31] - [114, 39]
+                              (identifier [114, 32] - [114, 38])))
+                          (operator_identifier [114, 40] - [114, 42]))
+                        (postfix_expression [115, 8] - [115, 68]
+                          (call_expression [115, 8] - [115, 61]
+                            function: (field_expression [115, 8] - [115, 39]
+                              value: (field_expression [115, 8] - [115, 32]
+                                value: (field_expression [115, 8] - [115, 22]
+                                  value: (field_expression [115, 8] - [115, 18]
+                                    value: (identifier [115, 8] - [115, 11])
+                                    field: (identifier [115, 12] - [115, 18]))
+                                  field: (identifier [115, 19] - [115, 22]))
+                                field: (identifier [115, 23] - [115, 32]))
+                              field: (identifier [115, 33] - [115, 39]))
+                            arguments: (arguments [115, 39] - [115, 61]
+                              (call_expression [115, 40] - [115, 60]
+                                function: (identifier [115, 40] - [115, 45])
+                                arguments: (arguments [115, 45] - [115, 60]
+                                  (field_expression [115, 46] - [115, 59]
+                                    value: (identifier [115, 46] - [115, 52])
+                                    field: (identifier [115, 53] - [115, 59]))))))
+                          (identifier [115, 62] - [115, 68]))
+                        (call_expression [116, 8] - [116, 39]
+                          function: (identifier [116, 8] - [116, 16])
+                          arguments: (arguments [116, 16] - [116, 39]
+                            (call_expression [116, 17] - [116, 38]
+                              function: (field_expression [116, 17] - [116, 36]
+                                value: (field_expression [116, 17] - [116, 30]
+                                  value: (identifier [116, 17] - [116, 23])
+                                  field: (identifier [116, 24] - [116, 30]))
+                                field: (identifier [116, 31] - [116, 36]))
+                              arguments: (arguments [116, 36] - [116, 38])))))))))))))
+      (function_definition [119, 2] - [122, 3]
+        name: (identifier [119, 6] - [119, 17])
+        parameters: (parameters [119, 17] - [119, 36]
+          (parameter [119, 18] - [119, 35]
+            name: (identifier [119, 18] - [119, 26])
+            type: (type_identifier [119, 28] - [119, 35])))
+        body: (call_expression [119, 39] - [122, 3]
+          function: (call_expression [119, 39] - [119, 60]
+            function: (identifier [119, 39] - [119, 45])
+            arguments: (arguments [119, 45] - [119, 60]
+              (field_expression [119, 46] - [119, 59]
+                value: (wildcard [119, 46] - [119, 47])
+                field: (identifier [119, 48] - [119, 59]))))
+          arguments: (block [119, 62] - [122, 3]
+            (lambda_expression [119, 63] - [122, 2]
+              parameters: (wildcard [119, 63] - [119, 64])
+              (lambda_expression [119, 69] - [122, 2]
+                parameters: (wildcard [119, 69] - [119, 70])
+                (indented_block [120, 4] - [122, 2]
+                  (call_expression [120, 4] - [122, 2]
+                    function: (call_expression [120, 4] - [120, 19]
+                      function: (identifier [120, 4] - [120, 9])
+                      arguments: (arguments [120, 9] - [120, 19]
+                        (identifier [120, 10] - [120, 18])))
+                    arguments: (colon_argument [120, 21] - [122, 2]
+                      lambda_start: (bindings [120, 21] - [120, 33]
+                        (binding [120, 22] - [120, 23]
+                          (wildcard [120, 22] - [120, 23]))
+                        (binding [120, 25] - [120, 32]
+                          name: (identifier [120, 25] - [120, 32])))
+                      (indented_block [121, 6] - [122, 2]
+                        (infix_expression [121, 6] - [121, 59]
+                          left: (call_expression [121, 6] - [121, 42]
+                            function: (field_expression [121, 6] - [121, 28]
+                              value: (field_expression [121, 6] - [121, 17]
+                                value: (field_expression [121, 6] - [121, 13]
+                                  value: (identifier [121, 6] - [121, 9])
+                                  field: (identifier [121, 10] - [121, 13]))
+                                field: (identifier [121, 14] - [121, 17]))
+                              field: (identifier [121, 18] - [121, 28]))
+                            arguments: (arguments [121, 28] - [121, 42]
+                              (field_expression [121, 29] - [121, 41]
+                                value: (identifier [121, 29] - [121, 36])
+                                field: (identifier [121, 37] - [121, 41]))))
+                          operator: (identifier [121, 43] - [121, 49])
+                          right: (identifier [121, 50] - [121, 59])))))))))))
+      (function_definition [124, 2] - [129, 3]
+        name: (identifier [124, 6] - [124, 12])
+        parameters: (parameters [124, 12] - [124, 44]
+          (parameter [124, 13] - [124, 30]
+            name: (identifier [124, 13] - [124, 21])
+            type: (type_identifier [124, 23] - [124, 30]))
+          (parameter [124, 32] - [124, 43]
+            name: (identifier [124, 32] - [124, 35])
+            type: (type_identifier [124, 37] - [124, 43])))
+        body: (call_expression [124, 47] - [129, 3]
+          function: (call_expression [124, 47] - [124, 64]
+            function: (identifier [124, 47] - [124, 53])
+            arguments: (arguments [124, 53] - [124, 64]
+              (field_expression [124, 54] - [124, 63]
+                value: (wildcard [124, 54] - [124, 55])
+                field: (identifier [124, 56] - [124, 63]))))
+          arguments: (block [124, 66] - [129, 3]
+            (lambda_expression [124, 67] - [129, 2]
+              parameters: (wildcard [124, 67] - [124, 68])
+              (lambda_expression [124, 73] - [129, 2]
+                parameters: (wildcard [124, 73] - [124, 74])
+                (indented_block [125, 4] - [129, 2]
+                  (call_expression [125, 4] - [129, 2]
+                    function: (call_expression [125, 4] - [125, 19]
+                      function: (identifier [125, 4] - [125, 9])
+                      arguments: (arguments [125, 9] - [125, 19]
+                        (identifier [125, 10] - [125, 18])))
+                    arguments: (colon_argument [125, 21] - [129, 2]
+                      lambda_start: (bindings [125, 21] - [125, 32]
+                        (binding [125, 22] - [125, 28]
+                          name: (identifier [125, 22] - [125, 28]))
+                        (binding [125, 30] - [125, 31]
+                          (wildcard [125, 30] - [125, 31])))
+                      (indented_block [126, 6] - [129, 2]
+                        (call_expression [126, 6] - [126, 43]
+                          function: (field_expression [126, 6] - [126, 27]
+                            value: (field_expression [126, 6] - [126, 20]
+                              value: (field_expression [126, 6] - [126, 16]
+                                value: (identifier [126, 6] - [126, 9])
+                                field: (identifier [126, 10] - [126, 16]))
+                              field: (identifier [126, 17] - [126, 20]))
+                            field: (identifier [126, 21] - [126, 27]))
+                          arguments: (arguments [126, 27] - [126, 43]
+                            (field_expression [126, 28] - [126, 37]
+                              value: (identifier [126, 28] - [126, 34])
+                              field: (identifier [126, 35] - [126, 37]))
+                            (identifier [126, 39] - [126, 42])))
+                        (postfix_expression [127, 6] - [127, 66]
+                          (call_expression [127, 6] - [127, 59]
+                            function: (field_expression [127, 6] - [127, 37]
+                              value: (field_expression [127, 6] - [127, 30]
+                                value: (field_expression [127, 6] - [127, 20]
+                                  value: (field_expression [127, 6] - [127, 16]
+                                    value: (identifier [127, 6] - [127, 9])
+                                    field: (identifier [127, 10] - [127, 16]))
+                                  field: (identifier [127, 17] - [127, 20]))
+                                field: (identifier [127, 21] - [127, 30]))
+                              field: (identifier [127, 31] - [127, 37]))
+                            arguments: (arguments [127, 37] - [127, 59]
+                              (call_expression [127, 38] - [127, 58]
+                                function: (identifier [127, 38] - [127, 43])
+                                arguments: (arguments [127, 43] - [127, 58]
+                                  (field_expression [127, 44] - [127, 57]
+                                    value: (identifier [127, 44] - [127, 50])
+                                    field: (identifier [127, 51] - [127, 57]))))))
+                          (identifier [127, 60] - [127, 66]))
+                        (call_expression [128, 8] - [128, 39]
+                          function: (identifier [128, 8] - [128, 16])
+                          arguments: (arguments [128, 16] - [128, 39]
+                            (call_expression [128, 17] - [128, 38]
+                              function: (field_expression [128, 17] - [128, 36]
+                                value: (field_expression [128, 17] - [128, 30]
+                                  value: (identifier [128, 17] - [128, 23])
+                                  field: (identifier [128, 24] - [128, 30]))
+                                field: (identifier [128, 31] - [128, 36]))
+                              arguments: (arguments [128, 36] - [128, 38])))))))))))))
+      (function_definition [131, 2] - [131, 62]
+        (modifiers [131, 2] - [131, 9]
+          (access_modifier [131, 2] - [131, 9]))
+        name: (identifier [131, 14] - [131, 24])
+        body: (call_expression [131, 27] - [131, 62]
+          function: (field_expression [131, 27] - [131, 60]
+            value: (field_expression [131, 27] - [131, 56]
+              value: (field_expression [131, 27] - [131, 42]
+                value: (field_expression [131, 27] - [131, 34]
+                  value: (identifier [131, 27] - [131, 30])
+                  field: (identifier [131, 31] - [131, 34]))
+                field: (identifier [131, 35] - [131, 42]))
+              field: (identifier [131, 43] - [131, 56]))
+            field: (identifier [131, 57] - [131, 60]))
+          arguments: (arguments [131, 60] - [131, 62])))
+      (function_definition [133, 2] - [143, 0]
+        (modifiers [133, 2] - [133, 9]
+          (access_modifier [133, 2] - [133, 9]))
+        name: (identifier [133, 14] - [133, 19])
+        parameters: (parameters [133, 20] - [135, 3]
+          (parameter [134, 6] - [134, 23]
+            name: (identifier [134, 6] - [134, 14])
+            type: (type_identifier [134, 16] - [134, 23])))
+        parameters: (parameters [135, 3] - [135, 44]
+          (parameter [135, 4] - [135, 43]
+            name: (identifier [135, 4] - [135, 5])
+            type: (function_type [135, 7] - [135, 43]
+              parameter_types: (parameter_types [135, 7] - [135, 29]
+                (tuple_type [135, 7] - [135, 29]
+                  (type_identifier [135, 8] - [135, 19])
+                  (type_identifier [135, 21] - [135, 28])))
+              return_type: (generic_type [135, 33] - [135, 43]
+                type: (type_identifier [135, 33] - [135, 35])
+                type_arguments: (type_arguments [135, 35] - [135, 43]
+                  (type_identifier [135, 36] - [135, 42]))))))
+        parameters: (parameters [135, 44] - [135, 59]
+          (type_identifier [135, 51] - [135, 58]))
+        return_type: (generic_type [135, 61] - [135, 71]
+          type: (type_identifier [135, 61] - [135, 63])
+          type_arguments: (type_arguments [135, 63] - [135, 71]
+            (type_identifier [135, 64] - [135, 70])))
+        body: (indented_block [136, 4] - [143, 0]
+          (infix_expression [136, 4] - [142, 5]
+            left: (infix_expression [136, 4] - [140, 5]
+              left: (infix_expression [136, 4] - [136, 31]
+                left: (field_expression [136, 4] - [136, 17]
+                  value: (field_expression [136, 4] - [136, 12]
+                    value: (identifier [136, 4] - [136, 7])
+                    field: (identifier [136, 8] - [136, 12]))
+                  field: (identifier [136, 13] - [136, 17]))
+                operator: (identifier [136, 18] - [136, 22])
+                right: (identifier [136, 23] - [136, 31]))
+              operator: (identifier [136, 32] - [136, 40])
+              right: (block [136, 42] - [140, 5]
+                (lambda_expression [136, 43] - [140, 4]
+                  parameters: (identifier [136, 43] - [136, 47])
+                  (indented_block [137, 6] - [140, 4]
+                    (infix_expression [137, 6] - [139, 7]
+                      left: (infix_expression [137, 6] - [137, 30]
+                        left: (field_expression [137, 6] - [137, 20]
+                          value: (field_expression [137, 6] - [137, 16]
+                            value: (identifier [137, 6] - [137, 9])
+                            field: (identifier [137, 10] - [137, 16]))
+                          field: (identifier [137, 17] - [137, 20]))
+                        operator: (identifier [137, 21] - [137, 25])
+                        right: (identifier [137, 26] - [137, 30]))
+                      operator: (identifier [137, 31] - [137, 39])
+                      right: (block [137, 41] - [139, 7]
+                        (lambda_expression [137, 42] - [139, 6]
+                          parameters: (identifier [137, 42] - [137, 48])
+                          (indented_block [138, 8] - [139, 6]
+                            (infix_expression [138, 8] - [138, 42]
+                              left: (call_expression [138, 8] - [138, 32]
+                                function: (identifier [138, 8] - [138, 9])
+                                arguments: (arguments [138, 9] - [138, 32]
+                                  (identifier [138, 10] - [138, 16])
+                                  (call_expression [138, 18] - [138, 31]
+                                    function: (identifier [138, 18] - [138, 25])
+                                    arguments: (arguments [138, 25] - [138, 31]
+                                      (identifier [138, 26] - [138, 30])))))
+                              operator: (identifier [138, 33] - [138, 37])
+                              right: (identifier [138, 38] - [138, 42]))))))))))
+            operator: (identifier [140, 6] - [140, 13])
+            right: (block [140, 15] - [142, 5]
+              (call_expression [141, 6] - [141, 31]
+                function: (call_expression [141, 6] - [141, 22]
+                  function: (field_expression [141, 6] - [141, 12]
+                    value: (wildcard [141, 6] - [141, 7])
+                    field: (identifier [141, 8] - [141, 12]))
+                  arguments: (arguments [141, 12] - [141, 22]
+                    (identifier [141, 13] - [141, 21])))
+                arguments: (arguments [141, 22] - [141, 31]
+                  (identifier [141, 23] - [141, 30]))))))))))
