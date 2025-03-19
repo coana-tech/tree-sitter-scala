@@ -3810,8 +3810,29 @@
           "type": "FIELD",
           "name": "name",
           "content": {
-            "type": "SYMBOL",
-            "name": "_identifier"
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_identifier"
+              },
+              {
+                "type": "REPEAT",
+                "content": {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "."
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_identifier"
+                    }
+                  ]
+                }
+              }
+            ]
           }
         },
         {
@@ -4265,7 +4286,7 @@
       }
     },
     "_simple_type": {
-      "type": "PREC_DYNAMIC",
+      "type": "PREC_LEFT",
       "value": 2,
       "content": {
         "type": "CHOICE",
@@ -6127,7 +6148,7 @@
       }
     },
     "bindings": {
-      "type": "PREC_DYNAMIC",
+      "type": "PREC_LEFT",
       "value": 10,
       "content": {
         "type": "SEQ",
@@ -6500,7 +6521,7 @@
       }
     },
     "_lambda_start": {
-      "type": "PREC_DYNAMIC",
+      "type": "PREC_LEFT",
       "value": 5,
       "content": {
         "type": "SEQ",
@@ -8755,31 +8776,6 @@
     ],
     [
       "_block"
-    ],
-    [
-      "_type_identifier",
-      "_lambda_start"
-    ],
-    [
-      "_simple_type",
-      "_lambda_start"
-    ],
-    [
-      "_simple_type",
-      "binding"
-    ],
-    [
-      "_simple_type",
-      "_simple_expression"
-    ],
-    [
-      "_simple_type",
-      "lambda_expression"
-    ],
-    [
-      "_simple_type",
-      "_simple_expression",
-      "binding"
     ]
   ],
   "precedences": [

@@ -119,13 +119,6 @@ module.exports = grammar({
 
     [$._definition_body],
     [$._block],
-    [$._type_identifier, $._lambda_start],
-
-    [$._simple_type, $._lambda_start],
-    [$._simple_type, $.binding],
-    [$._simple_type, $._simple_expression],
-    [$._simple_type, $.lambda_expression],
-    [$._simple_type, $._simple_expression, $.binding],
   ],
 
   word: $ => $._alpha_identifier,
@@ -850,7 +843,7 @@ module.exports = grammar({
         repeat($.annotation),
         optional($.modifiers),
         optional(choice("val", "var")),
-        field("name", $._identifier),
+        field("name", sep1(".", $._identifier)),
         optional(seq(":", field("type", $._param_type))),
         optional(seq("=", field("default_value", $.expression))),
       ),
@@ -930,7 +923,7 @@ module.exports = grammar({
     annotated_type: $ => prec.right(seq($._simple_type, repeat1($.annotation))),
 
     _simple_type: $ =>
-      prec.dynamic(
+      prec.left(
         PREC.type,
         choice(
           $.generic_type,
@@ -1327,7 +1320,7 @@ module.exports = grammar({
       ),
 
     bindings: $ =>
-      prec.dynamic(
+      prec.left(
         PREC.binding,
         seq($._open_paren, trailingSep(",", $.binding), $._close_paren),
       ),
@@ -1412,7 +1405,7 @@ module.exports = grammar({
       ),
 
     _lambda_start: $ =>
-      prec.dynamic(
+      prec.left(
         PREC.colon_call,
         seq(choice($.bindings, $._identifier, $.wildcard), choice("=>", "?=>")),
       ),
