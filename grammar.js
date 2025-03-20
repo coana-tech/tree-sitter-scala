@@ -1799,20 +1799,24 @@ module.exports = grammar({
           $._interpolated_string_start,
           repeat(
             seq(
+              optional(choice(token("//"), token("/*"))),
               $._interpolated_string_middle,
               choice($._dollar_escape, $.interpolation),
             ),
           ),
+          optional(choice(token("//"), token("/*"))),
           $._interpolated_string_end,
         ),
         seq(
           $._interpolated_multiline_string_start,
           repeat(
             seq(
+              optional(choice(token("//"), token("/*"))),
               $._interpolated_multiline_string_middle,
               choice($._dollar_escape, $.interpolation),
             ),
           ),
+          optional(choice(token("//"), token("/*"))),
           $._interpolated_multiline_string_end,
         ),
       ),

@@ -452,11 +452,9 @@ bool tree_sitter_scala_external_scanner_scan(void *payload, TSLexer *lexer, cons
 
   if (valid_symbols[SCANNER_START] && latest_indent == -1) {
     lexer->mark_end(lexer);
-    
     LOG("    SCANNER START\n");
-    set_latest_indent(scanner, current_indent);
+    set_latest_indent(scanner, lexer->get_column(lexer));
     lexer->result_symbol = SCANNER_START;
-    scanner->just_did_outdent = false;
     return true;
   }
 
