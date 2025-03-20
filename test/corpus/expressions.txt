@@ -837,8 +837,6 @@ class C {
             (field_expression
               (identifier)
               (identifier))
-            (comment)
-            (block_comment)
             (identifier)))))))
 
 ================================================================================

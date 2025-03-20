@@ -119,6 +119,10 @@ module.exports = grammar({
 
     [$._definition_body],
     [$._block],
+
+    [$.annotation],
+    [$.annotation, $.generic_type],
+    [$.arguments],
   ],
 
   word: $ => $._alpha_identifier,
@@ -343,9 +347,14 @@ module.exports = grammar({
       seq(
         field("name", $._identifier),
         field("type_parameters", optional($.type_parameters)),
-        optional($.annotation),
+        repeat($.annotation),
         optional($.access_modifier),
-        repeat(seq(optional($._automatic_semicolon), $.class_parameters)),
+        repeat(
+          seq(
+            optional($._automatic_semicolon),
+            prec.dynamic(6, $.class_parameters),
+          ),
+        ),
       ),
 
     trait_definition: $ =>
@@ -522,12 +531,10 @@ module.exports = grammar({
     _self_type_ascription: $ => seq(":", $._type),
 
     annotation: $ =>
-      prec.right(
-        seq(
-          "@",
-          field("name", $._simple_type),
-          field("arguments", repeat($.arguments)),
-        ),
+      seq(
+        "@",
+        field("name", $._simple_type),
+        field("arguments", choice(repeat(prec.dynamic(-4, $.arguments)))),
       ),
 
     val_definition: $ =>
@@ -795,16 +802,18 @@ module.exports = grammar({
       ),
 
     class_parameters: $ =>
-      prec(
-        1,
-        seq(
-          optional($._automatic_semicolon),
-          $._open_paren,
-          optional(choice("implicit", "using")),
-          trailingSep(",", $.class_parameter),
-          $._close_paren,
+      seq(
+        optional($._automatic_semicolon),
+        $._open_paren,
+        choice(
+          optional($._params_in_parens),
+          seq("implicit", $._params_in_parens),
+          seq("using", $._params_in_parens),
         ),
+        $._close_paren,
       ),
+
+    _params_in_parens: $ => trailingSep1(",", $.class_parameter),
 
     /*
      * DefParamClauses   ::=  {DefParamClause} [[nl] ‘(’ [‘implicit’] DefParams ‘)’]
@@ -1527,10 +1536,16 @@ module.exports = grammar({
       seq($._open_brack, trailingSep1(",", $._type), $._close_brack),
 
     arguments: $ =>
-      seq(
-        $._open_paren,
-        choice(optional($._exprs_in_parens), seq("using", $._exprs_in_parens)),
-        $._close_paren,
+      choice(
+        prec.dynamic(20, seq($._open_paren, $._close_paren)),
+        seq(
+          $._open_paren,
+          choice(
+            optional($._exprs_in_parens),
+            seq("using", $._exprs_in_parens),
+          ),
+          $._close_paren,
+        ),
       ),
 
     // ExprsInParens     ::=  ExprInParens {‘,’ ExprInParens}

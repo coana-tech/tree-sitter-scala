@@ -130,7 +130,7 @@ void *tree_sitter_scala_external_scanner_create() {
   // Allocate and initialize the first indentation group
   IndentationFrame *frame = ts_malloc(sizeof(IndentationFrame));
   array_init(&frame->indents);
-  array_push(&frame->indents, 0);
+  array_push(&frame->indents, -1);
   array_push(&scanner->frames, frame);
   scanner->just_did_outdent = false;
   return scanner;
@@ -187,7 +187,7 @@ void tree_sitter_scala_external_scanner_deserialize(void *payload, const char *b
   if (length == 0) {
       // Reinitialize with base indentation group
       push_indent_group(scanner);
-      push_indent_level(scanner, 0);
+      push_indent_level(scanner, -1);
       return;
   }
 
@@ -450,7 +450,7 @@ bool tree_sitter_scala_external_scanner_scan(void *payload, TSLexer *lexer, cons
   debug_valid_symbols(valid_symbols);
   LOG("\n");
 
-  if (valid_symbols[SCANNER_START]) {
+  if (valid_symbols[SCANNER_START] && latest_indent == -1) {
     lexer->mark_end(lexer);
     
     LOG("    SCANNER START\n");
