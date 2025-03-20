@@ -7921,6 +7921,10 @@
     "named": false
   },
   {
+    "type": ".match",
+    "named": false
+  },
+  {
     "type": "/*",
     "named": false
   },

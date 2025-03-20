@@ -1286,7 +1286,7 @@ module.exports = grammar({
       seq(
         optional($.inline_modifier),
         field("value", $.expression),
-        "match",
+        choice("match", ".match"), // TODO: Allow optional '.'?
         field("body", choice($.case_block, $.indented_cases)),
       ),
 
