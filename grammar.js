@@ -18,6 +18,7 @@ const PREC = {
   compound: 7,
   call: 8,
   field: 8,
+  match: 9,
   macro: 10,
   binding: 10,
 };
@@ -126,6 +127,8 @@ module.exports = grammar({
 
     [$.infix_expression, $.postfix_expression],
     [$.infix_expression, $.expression],
+    [$.field_expression, $.expression],
+    [$.field_expression, $.expression, $.infix_expression],
   ],
 
   word: $ => $._alpha_identifier,
@@ -1286,11 +1289,15 @@ module.exports = grammar({
      *   MatchClause       ::=  'match' <<< CaseClauses >>>
      */
     match_expression: $ =>
-      seq(
-        optional($.inline_modifier),
-        field("value", $.expression),
-        choice("match", ".match"), // TODO: Allow optional '.'?
-        field("body", choice($.case_block, $.indented_cases)),
+      prec.dynamic(
+        PREC.match,
+        seq(
+          optional($.inline_modifier),
+          field("value", $.expression),
+          optional("."),
+          "match",
+          field("body", choice($.case_block, $.indented_cases)),
+        ),
       ),
 
     try_expression: $ =>
@@ -1423,7 +1430,7 @@ module.exports = grammar({
       ),
 
     field_expression: $ =>
-      prec.left(
+      prec.dynamic(
         PREC.field,
         seq(
           field("value", $._simple_expression),
