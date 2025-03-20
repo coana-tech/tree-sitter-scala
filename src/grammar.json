@@ -4477,7 +4477,7 @@
     },
     "_infix_type_choice": {
       "type": "PREC_LEFT",
-      "value": 6,
+      "value": 5,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -4502,7 +4502,7 @@
     },
     "infix_type": {
       "type": "PREC_LEFT",
-      "value": 6,
+      "value": 5,
       "content": {
         "type": "SEQ",
         "members": [
@@ -5327,7 +5327,7 @@
     },
     "infix_pattern": {
       "type": "PREC_LEFT",
-      "value": 6,
+      "value": 5,
       "content": {
         "type": "SEQ",
         "members": [
@@ -6698,8 +6698,8 @@
       }
     },
     "infix_expression": {
-      "type": "PREC_LEFT",
-      "value": 6,
+      "type": "PREC_DYNAMIC",
+      "value": 5,
       "content": {
         "type": "SEQ",
         "members": [
@@ -6731,6 +6731,18 @@
               "type": "SYMBOL",
               "name": "_identifier"
             }
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_automatic_semicolon"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           },
           {
             "type": "FIELD",
@@ -6766,7 +6778,7 @@
       }
     },
     "postfix_expression": {
-      "type": "PREC_LEFT",
+      "type": "PREC_DYNAMIC",
       "value": 5,
       "content": {
         "type": "SEQ",
@@ -8831,6 +8843,18 @@
     ],
     [
       "arguments"
+    ],
+    [
+      "infix_expression",
+      "_postfix_expression_choice"
+    ],
+    [
+      "infix_expression",
+      "postfix_expression"
+    ],
+    [
+      "infix_expression",
+      "expression"
     ]
   ],
   "precedences": [

@@ -12,7 +12,7 @@ const PREC = {
   ascription: 4,
   postfix: 5,
   colon_call: 5,
-  infix: 6,
+  infix: 5,
   constructor_app: 7,
   prefix: 7,
   compound: 7,
@@ -123,6 +123,9 @@ module.exports = grammar({
     [$.annotation],
     [$.annotation, $.generic_type],
     [$.arguments],
+
+    [$.infix_expression, $.postfix_expression],
+    [$.infix_expression, $.expression],
   ],
 
   word: $ => $._alpha_identifier,
@@ -1459,7 +1462,7 @@ module.exports = grammar({
       ),
 
     infix_expression: $ =>
-      prec.left(
+      prec.dynamic(
         PREC.infix,
         seq(
           field(
@@ -1471,6 +1474,7 @@ module.exports = grammar({
             ),
           ),
           field("operator", $._identifier),
+          optional($._automatic_semicolon),
           field(
             "right",
             choice(
@@ -1486,7 +1490,7 @@ module.exports = grammar({
      * PostfixExpr       ::=  InfixExpr [id]
      */
     postfix_expression: $ =>
-      prec.left(
+      prec.dynamic(
         PREC.postfix,
         seq(
           choice($.infix_expression, $.prefix_expression, $._simple_expression),
