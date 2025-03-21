@@ -31,6 +31,7 @@ enum TokenType {
   CLOSE_BRACK,
   OPEN_BRACE,
   CLOSE_BRACE,
+  THEN,
   ELSE,
   CATCH,
   FINALLY,
@@ -80,6 +81,7 @@ static void debug_valid_symbols(const bool *valid_symbols) {
   if (valid_symbols[CLOSE_BRACK]) LOG("CLOSE_BRACK ");
   if (valid_symbols[OPEN_BRACE]) LOG("OPEN_BRACE ");
   if (valid_symbols[CLOSE_BRACE]) LOG("CLOSE_BRACE ");
+  if (valid_symbols[THEN]) LOG("THEN ");
   if (valid_symbols[ELSE]) LOG("ELSE ");
   if (valid_symbols[CATCH]) LOG("CATCH ");
   if (valid_symbols[FINALLY]) LOG("FINALLY ");
@@ -308,6 +310,7 @@ static bool detect_continuation(TSLexer *lexer, const bool *valid_symbols) {
 
   // Check for keywords that indicate continuation
   return 
+    (valid_symbols[THEN] && scan_word(lexer, "then")) ||  
     (valid_symbols[ELSE] && scan_word(lexer, "else")) ||
     (valid_symbols[CATCH] && scan_word(lexer, "catch")) ||
     (valid_symbols[FINALLY] && scan_word(lexer, "finally")) ||

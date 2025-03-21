@@ -49,6 +49,7 @@ module.exports = grammar({
     $._close_brack,
     $._open_brace,
     $._close_brace,
+    "then",
     "else",
     "catch",
     "finally",
@@ -142,6 +143,16 @@ module.exports = grammar({
     [$._simple_type, $._simple_expression],
     [$._simple_type, $.lambda_expression],
     [$._simple_type, $._simple_expression, $.binding],
+
+    [$.expression, $.ascription_expression],
+    [$.prefix_expression, $.ascription_expression],
+    [$.macro_body, $.ascription_expression],
+    [$.infix_expression, $.ascription_expression],
+
+    [$.expression, $.field_expression],
+    [$.expression, $.field_expression, $.prefix_expression],
+    [$.expression, $.field_expression, $.infix_expression],
+    [$.expression, $.field_expression, $.macro_body],
   ],
 
   word: $ => $._alpha_identifier,
@@ -1193,7 +1204,6 @@ module.exports = grammar({
     expression: $ =>
       choice(
         $.if_expression,
-        $.match_expression,
         $.try_expression,
         $.assignment_expression,
         $.lambda_expression,
@@ -1244,7 +1254,7 @@ module.exports = grammar({
         $.instance_expression,
         $.parenthesized_expression,
         $.field_expression,
-        $.simple_match_expression,
+        $.match_expression,
         $.generic_function,
         $.call_expression,
         alias($.colon_call_expression, $.call_expression),
@@ -1308,17 +1318,7 @@ module.exports = grammar({
         seq(
           optional($.inline_modifier),
           field("value", $.expression),
-          "match",
-          field("body", choice($.case_block, $.indented_cases)),
-        ),
-      ),
-
-    simple_match_expression: $ =>
-      prec.dynamic(
-        PREC.match,
-        seq(
-          field("value", $._simple_expression),
-          ".",
+          optional("."),
           "match",
           field("body", choice($.case_block, $.indented_cases)),
         ),
@@ -1511,6 +1511,7 @@ module.exports = grammar({
             $.prefix_expression,
             $._simple_expression,
           ),
+          optional($._automatic_semicolon),
           ":",
           choice($._param_type, $.annotation),
         ),
@@ -1966,7 +1967,7 @@ module.exports = grammar({
           optional("case"),
           $._pattern,
           choice("<-", "="),
-          $.expression,
+          $._indentable_expression,
           optional($.guard),
         ),
         repeat1($.guard),
