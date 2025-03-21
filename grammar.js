@@ -127,12 +127,14 @@ module.exports = grammar({
 
     [$.infix_expression, $.postfix_expression],
     [$.infix_expression, $.expression],
-    [$.field_expression, $.expression],
-    [$.field_expression, $.expression, $.infix_expression],
 
-    [$.field_expression, $.expression, $.prefix_expression],
     [$.postfix_expression, $.infix_expression, $.prefix_expression],
     [$.expression, $.prefix_expression],
+
+    [$.colon_call_expression, $.ascription_expression, $.prefix_expression],
+    [$.colon_call_expression, $.ascription_expression, $.infix_expression],
+
+    [$.expression, $.macro_body],
   ],
 
   word: $ => $._alpha_identifier,
@@ -1235,6 +1237,7 @@ module.exports = grammar({
         $.instance_expression,
         $.parenthesized_expression,
         $.field_expression,
+        $.simple_match_expression,
         $.generic_function,
         $.call_expression,
         alias($.colon_call_expression, $.call_expression),
@@ -1298,7 +1301,17 @@ module.exports = grammar({
         seq(
           optional($.inline_modifier),
           field("value", $.expression),
-          optional("."),
+          "match",
+          field("body", choice($.case_block, $.indented_cases)),
+        ),
+      ),
+
+    simple_match_expression: $ =>
+      prec.dynamic(
+        PREC.match,
+        seq(
+          field("value", $._simple_expression),
+          ".",
           "match",
           field("body", choice($.case_block, $.indented_cases)),
         ),
@@ -1373,7 +1386,18 @@ module.exports = grammar({
     guard: $ =>
       prec.left(
         PREC.control,
-        seq("if", field("condition", $._postfix_expression_choice)),
+        seq(
+          "if",
+          field(
+            "condition",
+            choice(
+              $.postfix_expression,
+              $.infix_expression,
+              $.prefix_expression,
+              $._simple_expression,
+            ),
+          ),
+        ),
       ),
 
     assignment_expression: $ =>
@@ -1387,7 +1411,7 @@ module.exports = grammar({
       ),
 
     generic_function: $ =>
-      prec(
+      prec.dynamic(
         PREC.call,
         seq(
           field("function", $.expression),
@@ -1396,7 +1420,7 @@ module.exports = grammar({
       ),
 
     call_expression: $ =>
-      prec.left(
+      prec.dynamic(
         PREC.call,
         seq(
           field("function", $._simple_expression),
@@ -1405,10 +1429,18 @@ module.exports = grammar({
       ),
 
     colon_call_expression: $ =>
-      prec.right(
+      prec.dynamic(
         PREC.colon_call,
         seq(
-          field("function", $._postfix_expression_choice),
+          field(
+            "function",
+            choice(
+              $.postfix_expression,
+              $.infix_expression,
+              $.prefix_expression,
+              $._simple_expression,
+            ),
+          ),
           ":",
           field("arguments", $.colon_argument),
         ),
@@ -1466,7 +1498,12 @@ module.exports = grammar({
       prec.dynamic(
         PREC.ascription,
         seq(
-          $._postfix_expression_choice,
+          choice(
+            $.postfix_expression,
+            $.infix_expression,
+            $.prefix_expression,
+            $._simple_expression,
+          ),
           ":",
           choice($._param_type, $.annotation),
         ),
@@ -1509,19 +1546,8 @@ module.exports = grammar({
         ),
       ),
 
-    _postfix_expression_choice: $ =>
-      prec.left(
-        PREC.postfix,
-        choice(
-          $.postfix_expression,
-          $.infix_expression,
-          $.prefix_expression,
-          $._simple_expression,
-        ),
-      ),
-
     macro_body: $ =>
-      prec.left(
+      prec.dynamic(
         PREC.macro,
         seq(
           "macro",
