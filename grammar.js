@@ -129,6 +129,10 @@ module.exports = grammar({
     [$.infix_expression, $.expression],
     [$.field_expression, $.expression],
     [$.field_expression, $.expression, $.infix_expression],
+
+    [$.field_expression, $.expression, $.prefix_expression],
+    [$.postfix_expression, $.infix_expression, $.prefix_expression],
+    [$.expression, $.prefix_expression],
   ],
 
   word: $ => $._alpha_identifier,
@@ -1529,7 +1533,10 @@ module.exports = grammar({
      * PrefixExpr        ::=  [PrefixOperator] SimpleExpr
      */
     prefix_expression: $ =>
-      prec(PREC.prefix, seq(choice("+", "-", "!", "~"), $._simple_expression)),
+      prec.dynamic(
+        PREC.prefix,
+        seq(choice("+", "-", "!", "~"), $._simple_expression),
+      ),
 
     tuple_expression: $ =>
       seq(

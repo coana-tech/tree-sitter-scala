@@ -6870,7 +6870,7 @@
       }
     },
     "prefix_expression": {
-      "type": "PREC",
+      "type": "PREC_DYNAMIC",
       "value": 7,
       "content": {
         "type": "SEQ",
@@ -8975,6 +8975,20 @@
       "field_expression",
       "expression",
       "infix_expression"
+    ],
+    [
+      "field_expression",
+      "expression",
+      "prefix_expression"
+    ],
+    [
+      "postfix_expression",
+      "infix_expression",
+      "prefix_expression"
+    ],
+    [
+      "expression",
+      "prefix_expression"
     ]
   ],
   "precedences": [
