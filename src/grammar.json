@@ -3073,7 +3073,7 @@
       }
     },
     "_structural_instance": {
-      "type": "PREC_RIGHT",
+      "type": "PREC_LEFT",
       "value": 7,
       "content": {
         "type": "SEQ",
@@ -4324,7 +4324,7 @@
       }
     },
     "_simple_type": {
-      "type": "PREC_LEFT",
+      "type": "PREC_DYNAMIC",
       "value": 2,
       "content": {
         "type": "CHOICE",
@@ -6643,7 +6643,7 @@
       }
     },
     "_lambda_start": {
-      "type": "PREC_LEFT",
+      "type": "PREC_DYNAMIC",
       "value": 5,
       "content": {
         "type": "SEQ",
@@ -9073,6 +9073,31 @@
     [
       "expression",
       "macro_body"
+    ],
+    [
+      "_type_identifier",
+      "_lambda_start"
+    ],
+    [
+      "_simple_type",
+      "_lambda_start"
+    ],
+    [
+      "_simple_type",
+      "binding"
+    ],
+    [
+      "_simple_type",
+      "_simple_expression"
+    ],
+    [
+      "_simple_type",
+      "lambda_expression"
+    ],
+    [
+      "_simple_type",
+      "_simple_expression",
+      "binding"
     ]
   ],
   "precedences": [

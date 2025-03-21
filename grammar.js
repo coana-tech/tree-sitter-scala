@@ -135,6 +135,13 @@ module.exports = grammar({
     [$.colon_call_expression, $.ascription_expression, $.infix_expression],
 
     [$.expression, $.macro_body],
+
+    [$._type_identifier, $._lambda_start],
+    [$._simple_type, $._lambda_start],
+    [$._simple_type, $.binding],
+    [$._simple_type, $._simple_expression],
+    [$._simple_type, $.lambda_expression],
+    [$._simple_type, $._simple_expression, $.binding],
   ],
 
   word: $ => $._alpha_identifier,
@@ -944,7 +951,7 @@ module.exports = grammar({
     annotated_type: $ => prec.right(seq($._simple_type, repeat1($.annotation))),
 
     _simple_type: $ =>
-      prec.left(
+      prec.dynamic(
         PREC.type,
         choice(
           $.generic_type,
@@ -1460,7 +1467,7 @@ module.exports = grammar({
       ),
 
     _lambda_start: $ =>
-      prec.left(
+      prec.dynamic(
         PREC.colon_call,
         seq(choice($.bindings, $._identifier, $.wildcard), choice("=>", "?=>")),
       ),
