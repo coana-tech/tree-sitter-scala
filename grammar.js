@@ -722,8 +722,8 @@ module.exports = grammar({
         PREC.compound,
         seq(
           $._constructor_application,
-          choice(":", "with"),
-          field("body", $.with_template_body),
+          repeat(seq("with", field("body", $._constructor_application))),
+          optional(seq("with", field("body", $.with_template_body))),
         ),
       ),
 
