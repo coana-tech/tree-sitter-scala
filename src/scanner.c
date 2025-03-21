@@ -236,19 +236,23 @@ static bool scan_string_content(TSLexer *lexer, bool is_multiline, bool has_inte
       advance(lexer);
       closing_quote_count++;
       if (!is_multiline) {
+        lexer->mark_end(lexer);
         lexer->result_symbol = has_interpolation ? INTERPOLATED_STRING_END : SIMPLE_STRING;
         return true;
       }
       if (closing_quote_count >= 3 && lexer->lookahead != '"') {
+        lexer->mark_end(lexer);
         lexer->result_symbol = has_interpolation ? INTERPOLATED_MULTILINE_STRING_END : SIMPLE_MULTILINE_STRING;
         return true;
       }
     } else if (lexer->lookahead == '$') {
       if (is_multiline && has_interpolation) {
+        lexer->mark_end(lexer);
         lexer->result_symbol =  INTERPOLATED_MULTILINE_STRING_MIDDLE;
         return true;
       }
       if (has_interpolation) {
+        lexer->mark_end(lexer);
         lexer->result_symbol = INTERPOLATED_STRING_MIDDLE;
         return true;
       }
@@ -427,6 +431,15 @@ static bool can_pop_frame(Scanner *scanner) {
 
 bool tree_sitter_scala_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
   Scanner *scanner = (Scanner *)payload;
+
+  if (valid_symbols[INTERPOLATED_STRING_MIDDLE]) {
+    return scan_string_content(lexer, false, true);
+  }
+
+  if (valid_symbols[INTERPOLATED_MULTILINE_STRING_MIDDLE]) {
+    return scan_string_content(lexer, true, true);
+  }
+
   int16_t latest_indent = get_latest_indent(scanner);
 
   LOG("\n");
@@ -443,6 +456,7 @@ bool tree_sitter_scala_external_scanner_scan(void *payload, TSLexer *lexer, cons
   LOG("lexer->lookahead: '%c'\n", lexer->lookahead);
   LOG("latest_indent: '%d'\n", latest_indent);
   LOG("current_indent: '%d'\n", current_indent);
+  LOG("lexer->get_column(lexer): '%d'\n", lexer->get_column(lexer));
   LOG("newline_count: '%d'\n", newline_count);
   LOG("scanner->just_did_outdent: '%d'\n", scanner->just_did_outdent);
   
@@ -524,13 +538,8 @@ bool tree_sitter_scala_external_scanner_scan(void *payload, TSLexer *lexer, cons
     return close_group(scanner, lexer, CLOSE_BRACE, '}');
   }
 
-  while (iswspace(lexer->lookahead)) {
-    skip(lexer);
-  }
-
   if (valid_symbols[SIMPLE_STRING] && lexer->lookahead == '"') {
     advance(lexer);
-
     bool is_multiline = false;
     if (lexer->lookahead == '"') {
       advance(lexer);
@@ -538,20 +547,13 @@ bool tree_sitter_scala_external_scanner_scan(void *payload, TSLexer *lexer, cons
         advance(lexer);
         is_multiline = true;
       } else {
+        lexer->mark_end(lexer);
         lexer->result_symbol = SIMPLE_STRING;
         return true;
       }
     }
 
     return scan_string_content(lexer, is_multiline, false);
-  }
-
-  if (valid_symbols[INTERPOLATED_STRING_MIDDLE]) {
-    return scan_string_content(lexer, false, true);
-  }
-
-  if (valid_symbols[INTERPOLATED_MULTILINE_STRING_MIDDLE]) {
-    return scan_string_content(lexer, true, true);
   }
 
   if (valid_symbols[INDENT_ABORT] && lexer->lookahead == ',' && can_pop_indent(scanner)) {
