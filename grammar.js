@@ -26,12 +26,19 @@ const PREC = {
 module.exports = grammar({
   name: "scala",
 
-  extras: $ => [/\s/, $.comment, $.block_comment, $._automatic_semicolon_abort],
+  extras: $ => [
+    /\s/,
+    $.comment,
+    $.block_comment,
+    $._scanner_update,
+    $._automatic_semicolon_abort,
+  ],
 
   supertypes: $ => [$.expression, $._definition, $._pattern],
 
   externals: $ => [
     $._scanner_start,
+    $._scanner_update,
     $._automatic_semicolon,
     $._automatic_semicolon_abort,
     $._indent,
@@ -197,6 +204,7 @@ module.exports = grammar({
     enum_definition: $ =>
       seq(
         repeat($.annotation),
+        optional($.modifiers),
         "enum",
         $._class_constructor,
         field("extend", optional($.extends_clause)),
@@ -226,6 +234,7 @@ module.exports = grammar({
     enum_case_definitions: $ =>
       seq(
         repeat($.annotation),
+        optional($.modifiers),
         "case",
         choice(sep1(",", $.simple_enum_case), $.full_enum_case),
       ),
@@ -1261,7 +1270,8 @@ module.exports = grammar({
       ),
 
     lambda_expression: $ =>
-      prec.right(
+      prec.dynamic(
+        PREC.control,
         seq(
           optional(seq(field("type_parameters", $.type_parameters), "=>")),
           field(
@@ -1363,7 +1373,7 @@ module.exports = grammar({
       ),
 
     bindings: $ =>
-      prec.left(
+      prec.dynamic(
         PREC.binding,
         seq($._open_paren, trailingSep(",", $.binding), $._close_paren),
       ),

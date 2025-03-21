@@ -175,6 +175,18 @@
           }
         },
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "modifiers"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "STRING",
           "value": "enum"
         },
@@ -361,6 +373,18 @@
             "type": "SYMBOL",
             "name": "annotation"
           }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "modifiers"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -5787,8 +5811,8 @@
       ]
     },
     "lambda_expression": {
-      "type": "PREC_RIGHT",
-      "value": 0,
+      "type": "PREC_DYNAMIC",
+      "value": 1,
       "content": {
         "type": "SEQ",
         "members": [
@@ -6202,7 +6226,7 @@
       }
     },
     "bindings": {
-      "type": "PREC_LEFT",
+      "type": "PREC_DYNAMIC",
       "value": 10,
       "content": {
         "type": "SEQ",
@@ -8891,6 +8915,10 @@
     },
     {
       "type": "SYMBOL",
+      "name": "_scanner_update"
+    },
+    {
+      "type": "SYMBOL",
       "name": "_automatic_semicolon_abort"
     }
   ],
@@ -9149,6 +9177,10 @@
     {
       "type": "SYMBOL",
       "name": "_scanner_start"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_scanner_update"
     },
     {
       "type": "SYMBOL",

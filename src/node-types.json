@@ -2100,6 +2100,10 @@
           "named": true
         },
         {
+          "type": "modifiers",
+          "named": true
+        },
+        {
           "type": "simple_enum_case",
           "named": true
         }
@@ -2179,6 +2183,10 @@
         },
         {
           "type": "class_parameters",
+          "named": true
+        },
+        {
+          "type": "modifiers",
           "named": true
         }
       ]
@@ -4913,7 +4921,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "annotated_type",

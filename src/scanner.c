@@ -4,7 +4,7 @@
 
 #include <wctype.h>
 
-// #define DEBUG
+#define DEBUG
 
 #ifdef DEBUG
 #define LOG(...) fprintf(stderr, __VA_ARGS__)
@@ -14,6 +14,7 @@
 
 enum TokenType {
   SCANNER_START,
+  SCANNER_UPDATE,
   AUTOMATIC_SEMICOLON,
   AUTOMATIC_SEMICOLON_ABORT,
   INDENT,
@@ -64,6 +65,7 @@ static inline void debug_indents(Scanner *scanner) {
 static void debug_valid_symbols(const bool *valid_symbols) {
   LOG("Valid symbols: ");
   if (valid_symbols[SCANNER_START]) LOG("SCANNER_START ");
+  if (valid_symbols[SCANNER_UPDATE]) LOG("SCANNER_UPDATE ");
   if (valid_symbols[AUTOMATIC_SEMICOLON]) LOG("AUTOMATIC_SEMICOLON ");
   if (valid_symbols[AUTOMATIC_SEMICOLON_ABORT]) LOG("AUTOMATIC_SEMICOLON_ABORT ");
   if (valid_symbols[INDENT]) LOG("INDENT ");
@@ -517,7 +519,13 @@ bool tree_sitter_scala_external_scanner_scan(void *payload, TSLexer *lexer, cons
     return true;
   }
 
-  scanner->just_did_outdent = false;
+  if (valid_symbols[SCANNER_UPDATE] && scanner->just_did_outdent) {
+    LOG("    SCANNER UPDATE\n");
+    lexer->mark_end(lexer);
+    lexer->result_symbol = SCANNER_UPDATE;
+    scanner->just_did_outdent = false;
+    return true;
+  }
 
   // Handle opening tokens: '(', '[', '{'
   if (valid_symbols[OPEN_PAREN] && lexer->lookahead == '(') {
