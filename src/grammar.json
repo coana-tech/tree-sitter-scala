@@ -4023,7 +4023,7 @@
       }
     },
     "name_and_type": {
-      "type": "PREC_LEFT",
+      "type": "PREC_DYNAMIC",
       "value": 1,
       "content": {
         "type": "SEQ",
@@ -6595,7 +6595,7 @@
       }
     },
     "colon_argument": {
-      "type": "PREC_LEFT",
+      "type": "PREC_DYNAMIC",
       "value": 5,
       "content": {
         "type": "SEQ",
@@ -8986,10 +8986,6 @@
       "type_lambda"
     ],
     [
-      "name_and_type",
-      "parameter"
-    ],
-    [
       "_simple_expression",
       "binding",
       "tuple_pattern"
@@ -9139,6 +9135,25 @@
       "expression",
       "field_expression",
       "macro_body"
+    ],
+    [
+      "name_and_type",
+      "_type_identifier"
+    ],
+    [
+      "name_and_type",
+      "_type_identifier",
+      "binding"
+    ],
+    [
+      "name_and_type",
+      "_type_identifier",
+      "binding",
+      "_simple_expression"
+    ],
+    [
+      "name_and_type",
+      "binding"
     ]
   ],
   "precedences": [

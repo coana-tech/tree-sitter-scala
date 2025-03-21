@@ -112,8 +112,6 @@ module.exports = grammar({
     [$._type, $.compound_type],
     // 'given'  '('  '['  _type_parameter  •  ','  …
     [$._variant_type_parameter, $.type_lambda],
-    // 'given'  '('  operator_identifier  ':'  _type  •  ','  …
-    [$.name_and_type, $.parameter],
     [$._simple_expression, $.binding, $.tuple_pattern],
     [$._simple_expression, $.tuple_pattern],
     [$._simple_expression, $._type_identifier],
@@ -160,6 +158,11 @@ module.exports = grammar({
     [$.expression, $.field_expression, $.prefix_expression],
     [$.expression, $.field_expression, $.infix_expression],
     [$.expression, $.field_expression, $.macro_body],
+
+    [$.name_and_type, $._type_identifier],
+    [$.name_and_type, $._type_identifier, $.binding],
+    [$.name_and_type, $._type_identifier, $.binding, $._simple_expression],
+    [$.name_and_type, $.binding],
   ],
 
   word: $ => $._alpha_identifier,
@@ -917,7 +920,7 @@ module.exports = grammar({
      * NameAndType       ::=  id ':' Type
      */
     name_and_type: $ =>
-      prec.left(
+      prec.dynamic(
         PREC.control,
         seq(field("name", $._identifier), ":", field("type", $._param_type)),
       ),
@@ -1468,7 +1471,7 @@ module.exports = grammar({
      *.                         indent (CaseClauses | Block) outdent
      */
     colon_argument: $ =>
-      prec.left(
+      prec.dynamic(
         PREC.colon_call,
         seq(
           optional(field("lambda_start", $._lambda_start)),
