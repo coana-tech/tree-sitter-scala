@@ -7917,13 +7917,9 @@
         ]
       },
       "condition": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "do",
-            "named": false
-          },
           {
             "type": "expression",
             "named": true

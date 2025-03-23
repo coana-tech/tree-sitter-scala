@@ -1543,7 +1543,6 @@ module.exports = grammar({
             ),
           ),
           field("operator", $._identifier),
-          optional($._automatic_semicolon),
           field(
             "right",
             choice(
@@ -1906,7 +1905,9 @@ module.exports = grammar({
           prec.right(
             seq(
               "while",
-              field("condition", seq($._indentable_expression, "do")),
+              field("condition", $._indentable_expression),
+              optional($._automatic_semicolon),
+              "do",
               field("body", $._indentable_expression),
             ),
           ),

@@ -338,57 +338,63 @@ static int skip_whitespace(TSLexer *lexer) {
   return newline_count;
 }
 
-static int skip_comment_and_whitespace(TSLexer *lexer) {
-  int newline_count = 0;
+static void skip_comment_and_whitespace(TSLexer *lexer, int16_t *newline_count, int16_t *indentation) {
+  int16_t newlines = 0;
+  int16_t indent = lexer->get_column(lexer);
 
   while (true) {
-    // Skip all whitespace characters, counting newlines
-    newline_count += skip_whitespace(lexer);
+    // Skip all whitespace characters, counting newlines.
+    int16_t new_newlines = skip_whitespace(lexer);
+    if (new_newlines > 0) {
+      indent = lexer->get_column(lexer);
+    }
+    newlines += new_newlines;
 
     // Handle single-line comments: `// ...`
     if (lexer->lookahead == '/') {
       advance(lexer);
       if (lexer->lookahead == '/') {
-        // Consume characters until the end of the line or EOF
+        // Consume characters until the end of the line or EOF.
         while (lexer->lookahead != '\n' && lexer->lookahead != 0) {
           advance(lexer);
         }
-        continue; // Go back to checking for whitespace/comments
+        continue; // Go back to checking for whitespace/comments.
       }
 
       // Handle multi-line (possibly nested) comments: `/* ... */`
       if (lexer->lookahead == '*') {
         advance(lexer);
-        int depth = 1; // Track nested depth
+        int depth = 1; // Track nested depth.
 
         while (depth > 0 && !lexer->eof(lexer)) {
           if (lexer->lookahead == '/') {
             advance(lexer);
             if (lexer->lookahead == '*') { // Found `/*`
               advance(lexer);
-              depth++; // Increase nesting depth
+              depth++; // Increase nesting depth.
             }
           } else if (lexer->lookahead == '*') {
             advance(lexer);
             if (lexer->lookahead == '/') { // Found `*/`
               advance(lexer);
-              depth--; // Decrease nesting depth
+              depth--; // Decrease nesting depth.
             }
           } else {
             if (lexer->lookahead == '\n') {
-              newline_count++;
+              newlines++;
             }
             advance(lexer);
           }
         }
-        continue; // Go back to checking for whitespace/comments
+        continue; // Go back to checking for whitespace/comments.
       }
     }
-    // If no more whitespace or comments, break out
+    // If no more whitespace or comments, break out.
     break;
   }
 
-  return newline_count;
+  *newline_count = newlines;
+  *indentation = indent;
 }
 
 // --- Helper function to handle opening a new indentation group ---
@@ -397,10 +403,10 @@ static bool open_group(Scanner *scanner, TSLexer *lexer, int16_t newlines_before
   int16_t indent_of_delimiter = lexer->get_column(lexer);
   advance(lexer);
   lexer->mark_end(lexer);
-  int16_t newlines_after_delimiter = skip_comment_and_whitespace(lexer);
-  int16_t indent_after_delimiter = lexer->get_column(lexer);
+  int16_t newlines_after_delimiter, indent_after_delimiter;
+  skip_comment_and_whitespace(lexer, &newlines_after_delimiter, &indent_after_delimiter);
 
-  int16_t initial_indent = newlines_after_delimiter ? indent_after_delimiter : newlines_before_delimiter ? indent_of_delimiter :indent_before_delimiter;
+  int16_t initial_indent = newlines_after_delimiter ? indent_after_delimiter : newlines_before_delimiter ? indent_of_delimiter : indent_before_delimiter;
 
   LOG("    OPEN GROUP: '%c'\n", c);
   push_indent_group(scanner);
@@ -449,20 +455,23 @@ bool tree_sitter_scala_external_scanner_scan(void *payload, TSLexer *lexer, cons
 
   LOG("\n");
   LOG("initial lexer->lookahead: '%c'\n", lexer->lookahead);
-  int16_t newline_count = skip_comment_and_whitespace(lexer);
+  int16_t newline_count, new_indent; 
+  skip_comment_and_whitespace(lexer, &newline_count, &new_indent);
 
   int16_t current_indent = 
     lexer->eof(lexer) 
     ? 0
     : newline_count > 0 || scanner->just_did_outdent
-      ? lexer->get_column(lexer)
+      ? new_indent
       : latest_indent;
 
   LOG("lexer->lookahead: '%c'\n", lexer->lookahead);
   LOG("latest_indent: '%d'\n", latest_indent);
-  LOG("current_indent: '%d'\n", current_indent);
+  
   LOG("lexer->get_column(lexer): '%d'\n", lexer->get_column(lexer));
   LOG("newline_count: '%d'\n", newline_count);
+  LOG("new_indent: '%d'\n", new_indent);
+  LOG("current_indent: '%d'\n", current_indent);
   LOG("scanner->just_did_outdent: '%d'\n", scanner->just_did_outdent);
   
   debug_indents(scanner);
@@ -500,7 +509,7 @@ bool tree_sitter_scala_external_scanner_scan(void *payload, TSLexer *lexer, cons
     return true;
   }
 
-  if (valid_symbols[AUTOMATIC_SEMICOLON] && (newline_count > 0 || scanner->just_did_outdent)) {
+  if (valid_symbols[AUTOMATIC_SEMICOLON] && (newline_count > 0 || scanner->just_did_outdent) && (current_indent == latest_indent)) {
     lexer->mark_end(lexer);
 
     // AUTOMATIC_SEMICOLON should not be issued in the middle of expressions
@@ -514,7 +523,7 @@ bool tree_sitter_scala_external_scanner_scan(void *payload, TSLexer *lexer, cons
 
     LOG("    AUTOMATIC SEMICOLON\n");
     lexer->result_symbol = AUTOMATIC_SEMICOLON;
-
+    set_latest_indent(scanner, current_indent);
     scanner->just_did_outdent = false;
     return true;
   }

@@ -6851,18 +6851,6 @@
             }
           },
           {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_automatic_semicolon"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          },
-          {
             "type": "FIELD",
             "name": "right",
             "content": {
@@ -8372,18 +8360,25 @@
                   "type": "FIELD",
                   "name": "condition",
                   "content": {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "_indentable_expression"
-                      },
-                      {
-                        "type": "STRING",
-                        "value": "do"
-                      }
-                    ]
+                    "type": "SYMBOL",
+                    "name": "_indentable_expression"
                   }
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_automatic_semicolon"
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                },
+                {
+                  "type": "STRING",
+                  "value": "do"
                 },
                 {
                   "type": "FIELD",
