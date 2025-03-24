@@ -149,11 +149,6 @@ module.exports = grammar({
     [$._simple_type, $.lambda_expression],
     [$._simple_type, $._simple_expression, $.binding],
 
-    [$.expression, $.field_expression],
-    [$.expression, $.field_expression, $.prefix_expression],
-    [$.expression, $.field_expression, $.infix_expression],
-    [$.expression, $.field_expression, $.macro_body],
-
     [$.name_and_type, $._type_identifier],
     [$.name_and_type, $._type_identifier, $.binding],
     [$.name_and_type, $._type_identifier, $.binding, $._simple_expression],
@@ -161,20 +156,6 @@ module.exports = grammar({
 
     [$._type, $.parameter_types],
     [$.bindings, $.parameter_types],
-
-    [$.expression, $.field_expression, $.macro_body, $.prefix_expression],
-    [$.expression, $.macro_body, $.prefix_expression],
-    [$.macro_body, $.prefix_expression],
-
-    [
-      $.colon_call_expression,
-      $.ascription_expression,
-      $.infix_expression,
-      $.prefix_expression,
-    ],
-    [$.expression, $.field_expression, $.infix_expression, $.prefix_expression],
-    [$.expression, $.infix_expression, $.prefix_expression],
-    [$.infix_expression, $.prefix_expression],
 
     [$.expression, $.match_expression, $.field_expression],
     [$.expression, $.match_expression],
@@ -965,7 +946,7 @@ module.exports = grammar({
         seq(
           $._indent,
           $._block,
-          choice(seq($._outdent, optional($._end_marker)), $._indent_abort),
+          choice(seq($._outdent, optional($._end_marker))),
         ),
       ),
 
@@ -1317,16 +1298,19 @@ module.exports = grammar({
      *    |  [‘inline’] ‘if’  Expr ‘then’ Expr [[semi] ‘else’ Expr]
      */
     if_expression: $ =>
-      seq(
-        optional($.inline_modifier),
-        "if",
-        field("condition", $._if_condition),
-        field("consequence", $._indentable_expression),
-        optional(
-          seq(
-            optional(";"),
-            "else",
-            field("alternative", $._indentable_expression),
+      prec.dynamic(
+        0,
+        seq(
+          optional($.inline_modifier),
+          "if",
+          field("condition", $._if_condition),
+          field("consequence", $._indentable_expression),
+          optional(
+            seq(
+              optional($._semicolon),
+              "else",
+              field("alternative", $._indentable_expression),
+            ),
           ),
         ),
       ),
@@ -1425,7 +1409,7 @@ module.exports = grammar({
 
     // This is created to capture guard from the right
     _case_pattern: $ =>
-      prec.right(
+      prec.dynamic(
         10,
         seq(field("pattern", $._pattern), optional($.guard), "=>"),
       ),
@@ -1614,7 +1598,8 @@ module.exports = grammar({
       seq(
         $._open_paren,
         $.expression,
-        repeat1(seq(",", $.expression)),
+        repeat1(seq(optional($._indent_abort), ",", $.expression)),
+        optional($._indent_abort),
         optional(","),
         $._close_paren,
       ),
@@ -1639,7 +1624,8 @@ module.exports = grammar({
       ),
 
     // ExprsInParens     ::=  ExprInParens {‘,’ ExprInParens}
-    _exprs_in_parens: $ => trailingSep1(",", $.expression),
+    _exprs_in_parens: $ =>
+      trailingSep1(seq(optional($._indent_abort), ","), $.expression),
 
     splice_expression: $ =>
       prec.left(
