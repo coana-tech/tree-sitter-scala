@@ -149,11 +149,6 @@ module.exports = grammar({
     [$._simple_type, $.lambda_expression],
     [$._simple_type, $._simple_expression, $.binding],
 
-    [$.expression, $.ascription_expression],
-    [$.prefix_expression, $.ascription_expression],
-    [$.macro_body, $.ascription_expression],
-    [$.infix_expression, $.ascription_expression],
-
     [$.expression, $.field_expression],
     [$.expression, $.field_expression, $.prefix_expression],
     [$.expression, $.field_expression, $.infix_expression],
@@ -163,6 +158,32 @@ module.exports = grammar({
     [$.name_and_type, $._type_identifier, $.binding],
     [$.name_and_type, $._type_identifier, $.binding, $._simple_expression],
     [$.name_and_type, $.binding],
+
+    [$._type, $.parameter_types],
+    [$.bindings, $.parameter_types],
+
+    [$.expression, $.field_expression, $.macro_body, $.prefix_expression],
+    [$.expression, $.macro_body, $.prefix_expression],
+    [$.macro_body, $.prefix_expression],
+
+    [
+      $.colon_call_expression,
+      $.ascription_expression,
+      $.infix_expression,
+      $.prefix_expression,
+    ],
+    [$.expression, $.field_expression, $.infix_expression, $.prefix_expression],
+    [$.expression, $.infix_expression, $.prefix_expression],
+    [$.infix_expression, $.prefix_expression],
+
+    [$.expression, $.match_expression, $.field_expression],
+    [$.expression, $.match_expression],
+    [$.expression, $.match_expression, $.field_expression, $.prefix_expression],
+    [$.expression, $.match_expression, $.prefix_expression],
+    [$.expression, $.match_expression, $.field_expression, $.macro_body],
+    [$.expression, $.match_expression, $.macro_body],
+    [$.expression, $.match_expression, $.field_expression, $.infix_expression],
+    [$.expression, $.match_expression, $.infix_expression],
   ],
 
   word: $ => $._alpha_identifier,
@@ -1091,7 +1112,8 @@ module.exports = grammar({
       ),
 
     function_type: $ =>
-      prec.left(
+      prec.dynamic(
+        PREC.type,
         choice(
           seq(field("type_parameters", $.type_parameters), $._arrow_then_type),
           seq(field("parameter_types", $.parameter_types), $._arrow_then_type),
@@ -1103,12 +1125,12 @@ module.exports = grammar({
 
     // Deprioritize against typed_pattern._type.
     parameter_types: $ =>
-      prec(
+      prec.dynamic(
         -1,
         choice(
           $._annotated_type,
           // Prioritize a parenthesized param list over a single tuple_type.
-          prec(
+          prec.dynamic(
             1,
             seq($._open_paren, trailingSep(",", $._param_type), $._close_paren),
           ),
@@ -1330,11 +1352,16 @@ module.exports = grammar({
         PREC.match,
         seq(
           optional($.inline_modifier),
-          field("value", $.expression),
+          field("value", choice($.expression, $._simple_expression)),
           optional("."),
-          "match",
-          field("body", choice($.case_block, $.indented_cases)),
+          $.match_clause,
         ),
+      ),
+
+    match_clause: $ =>
+      prec.dynamic(
+        PREC.match,
+        seq("match", field("body", choice($.case_block, $.indented_cases))),
       ),
 
     try_expression: $ =>
@@ -1524,7 +1551,6 @@ module.exports = grammar({
             $.prefix_expression,
             $._simple_expression,
           ),
-          optional($._automatic_semicolon),
           ":",
           choice($._param_type, $.annotation),
         ),
@@ -1651,51 +1677,6 @@ module.exports = grammar({
 
     identifier: $ =>
       prec.left(choice($._alpha_identifier, $._backquoted_id, $._soft_keyword)),
-
-    _hard_keyword: $ =>
-      choice(
-        "abstract",
-        "case",
-        "catch",
-        "class",
-        "def",
-        "do",
-        "else",
-        "enum",
-        "export",
-        "extends",
-        "false",
-        "final",
-        "finally",
-        "for",
-        "given",
-        "if",
-        "implicit",
-        "import",
-        "lazy",
-        "match",
-        "new",
-        "null",
-        "object",
-        "override",
-        "package",
-        "private",
-        "protected",
-        "return",
-        "sealed",
-        "super",
-        "then",
-        "throw",
-        "trait",
-        "true",
-        "try",
-        "type",
-        "val",
-        "var",
-        "while",
-        "with",
-        "yield",
-      ),
 
     // https://docs.scala-lang.org/scala3/reference/soft-modifier.html
     _soft_keyword: $ =>

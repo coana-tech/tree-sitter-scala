@@ -4639,7 +4639,7 @@
     }
   },
   {
-    "type": "match_expression",
+    "type": "match_clause",
     "named": true,
     "fields": {
       "body": {
@@ -4655,7 +4655,13 @@
             "named": true
           }
         ]
-      },
+      }
+    }
+  },
+  {
+    "type": "match_expression",
+    "named": true,
+    "fields": {
       "value": {
         "multiple": false,
         "required": true,
@@ -4668,11 +4674,15 @@
       }
     },
     "children": {
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "types": [
         {
           "type": "inline_modifier",
+          "named": true
+        },
+        {
+          "type": "match_clause",
           "named": true
         }
       ]
