@@ -599,7 +599,6 @@ bool tree_sitter_scala_external_scanner_scan(void *payload, TSLexer *lexer, cons
     return scan_string_content(lexer, is_multiline, false);
   }
 
-  LOG("    NOTHING\n");
   return false;
 }
 

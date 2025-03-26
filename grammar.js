@@ -157,6 +157,11 @@ module.exports = grammar({
     [$.expression, $.match_expression, $.macro_body],
     [$.expression, $.match_expression, $.field_expression, $.infix_expression],
     [$.expression, $.match_expression, $.infix_expression],
+
+    [$.expression, $.ascription_expression],
+    [$.prefix_expression, $.ascription_expression],
+    [$.macro_body, $.ascription_expression],
+    [$.infix_expression, $.ascription_expression],
   ],
 
   word: $ => $._alpha_identifier,
@@ -1538,6 +1543,7 @@ module.exports = grammar({
             $.prefix_expression,
             $._simple_expression,
           ),
+          optional($._automatic_semicolon),
           ":",
           choice($._param_type, $.annotation),
         ),

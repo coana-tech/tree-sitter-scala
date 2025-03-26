@@ -6914,6 +6914,18 @@
             ]
           },
           {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_automatic_semicolon"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
             "type": "STRING",
             "value": ":"
           },
@@ -9127,6 +9139,22 @@
       "expression",
       "match_expression",
       "infix_expression"
+    ],
+    [
+      "expression",
+      "ascription_expression"
+    ],
+    [
+      "prefix_expression",
+      "ascription_expression"
+    ],
+    [
+      "macro_body",
+      "ascription_expression"
+    ],
+    [
+      "infix_expression",
+      "ascription_expression"
     ]
   ],
   "precedences": [
