@@ -2079,6 +2079,10 @@
         {
           "type": "expression",
           "named": true
+        },
+        {
+          "type": "self_type",
+          "named": true
         }
       ]
     }
@@ -4931,7 +4935,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "annotated_type",

@@ -26,13 +26,7 @@ const PREC = {
 module.exports = grammar({
   name: "scala",
 
-  extras: $ => [
-    /\s/,
-    $.comment,
-    $.block_comment,
-    $._scanner_update,
-    $._automatic_semicolon_abort,
-  ],
+  extras: $ => [/\s/, $.comment, $.block_comment, $._scanner_update],
 
   supertypes: $ => [$.expression, $._definition, $._pattern],
 
@@ -40,9 +34,7 @@ module.exports = grammar({
     $._scanner_start,
     $._scanner_update,
     $._automatic_semicolon,
-    $._automatic_semicolon_abort,
     $._indent,
-    $._indent_abort,
     $._interpolated_string_middle,
     $._interpolated_string_end,
     $._interpolated_multiline_string_middle,
@@ -225,15 +217,33 @@ module.exports = grammar({
         ),
       ),
 
-    enum_body: $ =>
-      choice(
-        prec.left(PREC.control, seq(":", $._indent, $._enum_block, $._outdent)),
+    enum_body: $ => choice($._indented_enum_body, $._braced_enum_body),
+
+    _indented_enum_body: $ =>
+      prec.left(
+        PREC.control,
+        seq(":", $._indent, optional($.self_type), $._enum_block, $._outdent),
+      ),
+
+    _braced_enum_body: $ =>
+      prec.left(
+        PREC.control,
         seq(
           $._open_brace,
-          // TODO: self type
-          optional($._enum_block),
+          optional(choice($._braced_enum_body1, $._braced_enum_body2)),
           $._close_brace,
         ),
+      ),
+
+    _braced_enum_body1: $ => seq(optional($.self_type), $._enum_block),
+    _braced_enum_body2: $ =>
+      seq(
+        choice(
+          seq($._indent, optional($.self_type)),
+          seq(optional($.self_type), $._indent),
+        ),
+        optional($._enum_block),
+        $._outdent,
       ),
 
     enum_case_definitions: $ =>
@@ -943,11 +953,7 @@ module.exports = grammar({
     indented_block: $ =>
       prec.left(
         PREC.control,
-        seq(
-          $._indent,
-          $._block,
-          choice(seq($._outdent, optional($._end_marker))),
-        ),
+        seq($._indent, $._block, $._outdent, optional($._end_marker)),
       ),
 
     indented_cases: $ =>
@@ -1298,19 +1304,16 @@ module.exports = grammar({
      *    |  [‘inline’] ‘if’  Expr ‘then’ Expr [[semi] ‘else’ Expr]
      */
     if_expression: $ =>
-      prec.dynamic(
-        0,
-        seq(
-          optional($.inline_modifier),
-          "if",
-          field("condition", $._if_condition),
-          field("consequence", $._indentable_expression),
-          optional(
-            seq(
-              optional($._semicolon),
-              "else",
-              field("alternative", $._indentable_expression),
-            ),
+      seq(
+        optional($.inline_modifier),
+        "if",
+        field("condition", $._if_condition),
+        field("consequence", $._indentable_expression),
+        optional(
+          seq(
+            optional(";"),
+            "else",
+            field("alternative", $._indentable_expression),
           ),
         ),
       ),
@@ -1598,9 +1601,8 @@ module.exports = grammar({
       seq(
         $._open_paren,
         $.expression,
-        repeat1(seq(optional($._indent_abort), ",", $.expression)),
-        optional($._indent_abort),
-        optional(","),
+        ",",
+        trailingSep1(",", $.expression),
         $._close_paren,
       ),
 
@@ -1624,8 +1626,7 @@ module.exports = grammar({
       ),
 
     // ExprsInParens     ::=  ExprInParens {‘,’ ExprInParens}
-    _exprs_in_parens: $ =>
-      trailingSep1(seq(optional($._indent_abort), ","), $.expression),
+    _exprs_in_parens: $ => trailingSep1(",", $.expression),
 
     splice_expression: $ =>
       prec.left(
