@@ -748,7 +748,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "_namespace_expression"
+                "name": "namespace_expression"
               },
               {
                 "type": "REPEAT",
@@ -761,7 +761,7 @@
                     },
                     {
                       "type": "SYMBOL",
-                      "name": "_namespace_expression"
+                      "name": "namespace_expression"
                     }
                   ]
                 }
@@ -786,7 +786,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "_namespace_expression"
+                "name": "namespace_expression"
               },
               {
                 "type": "REPEAT",
@@ -799,7 +799,7 @@
                     },
                     {
                       "type": "SYMBOL",
-                      "name": "_namespace_expression"
+                      "name": "namespace_expression"
                     }
                   ]
                 }
@@ -809,7 +809,7 @@
         ]
       }
     },
-    "_namespace_expression": {
+    "namespace_expression": {
       "type": "PREC_LEFT",
       "value": 0,
       "content": {

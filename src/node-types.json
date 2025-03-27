@@ -2245,40 +2245,13 @@
   {
     "type": "export_declaration",
     "named": true,
-    "fields": {
-      "path": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": ".",
-            "named": false
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "operator_identifier",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "as_renamed_identifier",
-          "named": true
-        },
-        {
-          "type": "namespace_selectors",
-          "named": true
-        },
-        {
-          "type": "namespace_wildcard",
+          "type": "namespace_expression",
           "named": true
         }
       ]
@@ -3683,40 +3656,13 @@
   {
     "type": "import_declaration",
     "named": true,
-    "fields": {
-      "path": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": ".",
-            "named": false
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "operator_identifier",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "as_renamed_identifier",
-          "named": true
-        },
-        {
-          "type": "namespace_selectors",
-          "named": true
-        },
-        {
-          "type": "namespace_wildcard",
+          "type": "namespace_expression",
           "named": true
         }
       ]
@@ -4924,6 +4870,48 @@
       "types": [
         {
           "type": "name_and_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "namespace_expression",
+    "named": true,
+    "fields": {
+      "path": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "operator_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "as_renamed_identifier",
+          "named": true
+        },
+        {
+          "type": "namespace_selectors",
+          "named": true
+        },
+        {
+          "type": "namespace_wildcard",
           "named": true
         }
       ]
