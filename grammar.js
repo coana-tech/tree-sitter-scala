@@ -323,7 +323,7 @@ module.exports = grammar({
 
     namespace_wildcard: $ => prec.left(1, choice("*", "_", "given")),
 
-    _namespace_given_by_type: $ => seq("given", $._type),
+    namespace_given_by_type: $ => seq("given", $._type),
 
     namespace_selectors: $ =>
       seq(
@@ -331,7 +331,7 @@ module.exports = grammar({
         trailingSep1(
           ",",
           choice(
-            $._namespace_given_by_type,
+            $.namespace_given_by_type,
             $.namespace_wildcard,
             $._identifier,
             $.arrow_renamed_identifier,

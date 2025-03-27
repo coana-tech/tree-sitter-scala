@@ -4930,23 +4930,15 @@
     }
   },
   {
-    "type": "namespace_selectors",
+    "type": "namespace_given_by_type",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
         {
           "type": "annotated_type",
-          "named": true
-        },
-        {
-          "type": "arrow_renamed_identifier",
-          "named": true
-        },
-        {
-          "type": "as_renamed_identifier",
           "named": true
         },
         {
@@ -4959,10 +4951,6 @@
         },
         {
           "type": "generic_type",
-          "named": true
-        },
-        {
-          "type": "identifier",
           "named": true
         },
         {
@@ -4979,14 +4967,6 @@
         },
         {
           "type": "named_tuple_type",
-          "named": true
-        },
-        {
-          "type": "namespace_wildcard",
-          "named": true
-        },
-        {
-          "type": "operator_identifier",
           "named": true
         },
         {
@@ -5019,6 +4999,41 @@
         },
         {
           "type": "wildcard",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "namespace_selectors",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arrow_renamed_identifier",
+          "named": true
+        },
+        {
+          "type": "as_renamed_identifier",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "namespace_given_by_type",
+          "named": true
+        },
+        {
+          "type": "namespace_wildcard",
+          "named": true
+        },
+        {
+          "type": "operator_identifier",
           "named": true
         }
       ]

@@ -902,7 +902,7 @@
         ]
       }
     },
-    "_namespace_given_by_type": {
+    "namespace_given_by_type": {
       "type": "SEQ",
       "members": [
         {
@@ -933,7 +933,7 @@
                   "members": [
                     {
                       "type": "SYMBOL",
-                      "name": "_namespace_given_by_type"
+                      "name": "namespace_given_by_type"
                     },
                     {
                       "type": "SYMBOL",
@@ -967,7 +967,7 @@
                         "members": [
                           {
                             "type": "SYMBOL",
-                            "name": "_namespace_given_by_type"
+                            "name": "namespace_given_by_type"
                           },
                           {
                             "type": "SYMBOL",
