@@ -28,7 +28,7 @@ module.exports = grammar({
 
   extras: $ => [/\s/, $.comment, $.block_comment, $._scanner_update],
 
-  supertypes: $ => [$.expression, $._definition, $._pattern],
+  supertypes: $ => [$.expression, $.definition, $._pattern],
 
   externals: $ => [
     $._scanner_start,
@@ -60,7 +60,6 @@ module.exports = grammar({
   inline: $ => [
     $._pattern,
     $._semicolon,
-    $._definition,
     $._param_type,
     $._identifier,
     $.literal,
@@ -179,12 +178,12 @@ module.exports = grammar({
       choice(
         $.package_clause,
         $.package_object,
-        $._definition,
+        $.definition,
         $._end_marker,
         $.expression,
       ),
 
-    _definition: $ =>
+    definition: $ =>
       choice(
         $.given_definition,
         $.extension_definition,
@@ -218,7 +217,7 @@ module.exports = grammar({
       seq(
         trailingSep1(
           $._semicolon,
-          choice($.enum_case_definitions, $.expression, $._definition),
+          choice($.enum_case_definitions, $.expression, $.definition),
         ),
       ),
 
@@ -961,7 +960,7 @@ module.exports = grammar({
       seq(
         trailingSep1(
           $._semicolon,
-          choice($._definition, $.expression, $._end_marker, ";"),
+          choice($.definition, $.expression, $._end_marker, ";"),
         ),
       ),
 

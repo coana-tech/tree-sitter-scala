@@ -1,71 +1,5 @@
 [
   {
-    "type": "_definition",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "class_definition",
-        "named": true
-      },
-      {
-        "type": "enum_definition",
-        "named": true
-      },
-      {
-        "type": "export_declaration",
-        "named": true
-      },
-      {
-        "type": "extension_definition",
-        "named": true
-      },
-      {
-        "type": "function_declaration",
-        "named": true
-      },
-      {
-        "type": "function_definition",
-        "named": true
-      },
-      {
-        "type": "given_definition",
-        "named": true
-      },
-      {
-        "type": "import_declaration",
-        "named": true
-      },
-      {
-        "type": "object_definition",
-        "named": true
-      },
-      {
-        "type": "trait_definition",
-        "named": true
-      },
-      {
-        "type": "type_definition",
-        "named": true
-      },
-      {
-        "type": "val_declaration",
-        "named": true
-      },
-      {
-        "type": "val_definition",
-        "named": true
-      },
-      {
-        "type": "var_declaration",
-        "named": true
-      },
-      {
-        "type": "var_definition",
-        "named": true
-      }
-    ]
-  },
-  {
     "type": "_pattern",
     "named": true,
     "subtypes": [
@@ -151,6 +85,72 @@
       },
       {
         "type": "wildcard",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "definition",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "class_definition",
+        "named": true
+      },
+      {
+        "type": "enum_definition",
+        "named": true
+      },
+      {
+        "type": "export_declaration",
+        "named": true
+      },
+      {
+        "type": "extension_definition",
+        "named": true
+      },
+      {
+        "type": "function_declaration",
+        "named": true
+      },
+      {
+        "type": "function_definition",
+        "named": true
+      },
+      {
+        "type": "given_definition",
+        "named": true
+      },
+      {
+        "type": "import_declaration",
+        "named": true
+      },
+      {
+        "type": "object_definition",
+        "named": true
+      },
+      {
+        "type": "trait_definition",
+        "named": true
+      },
+      {
+        "type": "type_definition",
+        "named": true
+      },
+      {
+        "type": "val_declaration",
+        "named": true
+      },
+      {
+        "type": "val_definition",
+        "named": true
+      },
+      {
+        "type": "var_declaration",
+        "named": true
+      },
+      {
+        "type": "var_definition",
         "named": true
       }
     ]
@@ -983,7 +983,7 @@
       "required": false,
       "types": [
         {
-          "type": "_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -1237,12 +1237,12 @@
             "named": false
           },
           {
-            "type": "_definition",
-            "named": true
-          },
-          {
             "type": "_end_ident",
             "named": false
+          },
+          {
+            "type": "definition",
+            "named": true
           },
           {
             "type": "end",
@@ -1674,11 +1674,11 @@
       "required": false,
       "types": [
         {
-          "type": "_definition",
+          "type": "comment",
           "named": true
         },
         {
-          "type": "comment",
+          "type": "definition",
           "named": true
         },
         {
@@ -2069,7 +2069,7 @@
       "required": false,
       "types": [
         {
-          "type": "_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -2358,12 +2358,12 @@
             "named": false
           },
           {
-            "type": "_definition",
-            "named": true
-          },
-          {
             "type": "_end_ident",
             "named": false
+          },
+          {
+            "type": "definition",
+            "named": true
           },
           {
             "type": "end",
@@ -3677,7 +3677,7 @@
       "required": false,
       "types": [
         {
-          "type": "_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -5106,7 +5106,7 @@
       "required": false,
       "types": [
         {
-          "type": "_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -5795,15 +5795,15 @@
       "required": false,
       "types": [
         {
-          "type": "_definition",
-          "named": true
-        },
-        {
           "type": "annotated_type",
           "named": true
         },
         {
           "type": "compound_type",
+          "named": true
+        },
+        {
+          "type": "definition",
           "named": true
         },
         {
@@ -5874,7 +5874,7 @@
       "required": false,
       "types": [
         {
-          "type": "_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -6148,15 +6148,15 @@
       "required": false,
       "types": [
         {
-          "type": "_definition",
-          "named": true
-        },
-        {
           "type": "annotated_type",
           "named": true
         },
         {
           "type": "compound_type",
+          "named": true
+        },
+        {
+          "type": "definition",
           "named": true
         },
         {
@@ -6282,7 +6282,7 @@
       "required": false,
       "types": [
         {
-          "type": "_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -6305,7 +6305,7 @@
       "required": false,
       "types": [
         {
-          "type": "_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -7985,7 +7985,7 @@
       "required": false,
       "types": [
         {
-          "type": "_definition",
+          "type": "definition",
           "named": true
         },
         {
