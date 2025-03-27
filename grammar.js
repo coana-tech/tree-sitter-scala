@@ -287,8 +287,25 @@ module.exports = grammar({
           // kind of delcaration inside of the package blocks. As we're more
           // concerned with the structure rather than the validity of the program
           // we'll allow it.
-          field("body", optional($.template_body)),
+          field("body", optional($.package_body)),
         ),
+      ),
+
+    _package_block: $ =>
+      seq(trailingSep1($._semicolon, $._top_level_definition)),
+
+    package_body: $ => choice($._indented_package_body, $._braced_package_body),
+
+    _indented_package_body: $ =>
+      prec.left(
+        PREC.control,
+        seq(":", $._indent, $._package_block, $._outdent),
+      ),
+
+    _braced_package_body: $ =>
+      prec.left(
+        PREC.control,
+        seq($._open_brace, optional($._package_block), $._close_brace),
       ),
 
     package_identifier: $ => prec.right(sep1(".", $._identifier)),
