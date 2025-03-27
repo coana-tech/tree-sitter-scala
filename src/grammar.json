@@ -896,24 +896,28 @@
             "value": "_"
           },
           {
-            "type": "STRING",
-            "value": "given"
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "given"
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_type"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
-    },
-    "namespace_given_by_type": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "given"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_type"
-        }
-      ]
     },
     "namespace_selectors": {
       "type": "SEQ",
@@ -931,10 +935,6 @@
                 {
                   "type": "CHOICE",
                   "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "namespace_given_by_type"
-                    },
                     {
                       "type": "SYMBOL",
                       "name": "namespace_wildcard"
@@ -965,10 +965,6 @@
                       {
                         "type": "CHOICE",
                         "members": [
-                          {
-                            "type": "SYMBOL",
-                            "name": "namespace_given_by_type"
-                          },
                           {
                             "type": "SYMBOL",
                             "name": "namespace_wildcard"

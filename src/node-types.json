@@ -4918,12 +4918,43 @@
     }
   },
   {
-    "type": "namespace_given_by_type",
+    "type": "namespace_selectors",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arrow_renamed_identifier",
+          "named": true
+        },
+        {
+          "type": "as_renamed_identifier",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "namespace_wildcard",
+          "named": true
+        },
+        {
+          "type": "operator_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "namespace_wildcard",
     "named": true,
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "annotated_type",
@@ -4991,46 +5022,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "namespace_selectors",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "arrow_renamed_identifier",
-          "named": true
-        },
-        {
-          "type": "as_renamed_identifier",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "namespace_given_by_type",
-          "named": true
-        },
-        {
-          "type": "namespace_wildcard",
-          "named": true
-        },
-        {
-          "type": "operator_identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "namespace_wildcard",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "object_definition",
